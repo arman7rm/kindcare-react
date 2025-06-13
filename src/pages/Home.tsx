@@ -1,3 +1,4 @@
+import Footer from "../components/Footer/Footer";
 import Header from "../components/Header/Header";
 import MobileMenu from "../components/MobileMenu";
 
@@ -6,6 +7,7 @@ const Home = () => {
     <>
       <MobileMenu />
       <Header />
+      <Footer />
     </>
   );
 };
