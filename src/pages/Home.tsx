@@ -1,12 +1,17 @@
 import Footer from "../components/Footer/Footer";
 import Header from "../components/Header/Header";
-import MobileMenu from "../components/MobileMenu";
+import Hero from "../components/Hero";
+import MobileMenuNav from "../components/MobileMenuNav";
 
 const Home = () => {
   return (
     <>
-      <MobileMenu />
+      <header className="lg:hidden">
+        <MobileMenuNav />
+      </header>
+
       <Header />
+      <Hero />
       <Footer />
     </>
   );

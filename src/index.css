@@ -1,4 +1,5 @@
-@import "tailwindcss";:root {
+@import "tailwindcss";
+:root {
   --white: #ffffff;
   --primary: #22577a;
   --secondary: #57CC99;
@@ -10,3 +11,6 @@
   --chonburi: "Chonburi", serif;
 }
 
+#root{
+  padding: 0;
+}
