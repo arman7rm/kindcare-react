@@ -1,5 +1,4 @@
-import React from "react";
-import kindCareLogo from "../../assets/kindcare.png";
+import kindCareLogo from "../assets/kindcare.png";
 
 const Header = () => {
   return (
