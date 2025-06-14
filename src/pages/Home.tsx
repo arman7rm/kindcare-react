@@ -7,14 +7,8 @@ import ServiceList from "../components/ServiceList";
 const Home = () => {
   return (
     <>
-      <header className="lg:hidden">
-        <MobileMenuNav />
-      </header>
-
-      <Header />
       <Hero />
       <ServiceList/>
-      <Footer />
     </>
   );
 };

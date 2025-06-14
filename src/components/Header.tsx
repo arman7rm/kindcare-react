@@ -1,6 +1,9 @@
+import { useNavigate } from "react-router-dom";
 import kindCareLogo from "../assets/kindcare.png";
 
 const Header = () => {
+  const navigate = useNavigate();
+
   return (
     <header className="mx-auto hidden grid-cols-6 grid-rows-2 items-center rounded-t-[35px] bg-white py-4 lg:grid xl:max-w-[1200px]">
       <div className="col-start-1 row-span-2 flex items-center">
@@ -37,7 +40,7 @@ const Header = () => {
         aria-label="Main navigation"
       >
         <a
-          href="index.html"
+          href="/"
           className="px-2 py-2 text-lg text-[var(--primary)] hover:rounded-[15px] hover:bg-[var(--primary)] hover:text-white lg:text-xs xl:text-sm"
         >
           Home
@@ -50,6 +53,7 @@ const Header = () => {
               aria-expanded="false"
               aria-controls="about-menu"
               role="menuitem"
+              onClick={() => navigate("/about")}
             >
               <span>About Us</span>
               <span
@@ -112,6 +116,7 @@ const Header = () => {
               aria-expanded="false"
               aria-controls="services-menu"
               role="menuitem"
+              onClick={() => navigate("/Services")}
             >
               <span>Services</span>
               <span
@@ -157,20 +162,20 @@ const Header = () => {
             </div>
           </div>
         </div>{" "}
-        <a
+        {/* <a
           href="#blog"
           className="px-2 py-2 text-lg text-[var(--primary)] hover:rounded-[15px] hover:bg-[var(--primary)] hover:text-white lg:text-xs xl:text-sm"
         >
           Blog
-        </a>
+        </a> */}
         <a
-          href="#careers"
+          href="/careers"
           className="px-2 py-2 text-lg text-[var(--primary)] hover:rounded-[15px] hover:bg-[var(--primary)] hover:text-white lg:text-xs xl:text-sm"
         >
           Careers
         </a>
         <a
-          href="#contact"
+          href="/contact"
           className="px-2 py-2 text-lg text-[var(--primary)] hover:rounded-[15px] hover:bg-[var(--primary)] hover:text-white lg:text-xs xl:text-sm"
         >
           Contact Us

@@ -5,12 +5,6 @@ import MobileMenuNav from "../components/MobileMenuNav";
 const Careers = () => {
   return (
     <>
-      <header className="lg:hidden">
-        <MobileMenuNav />
-      </header>
-
-      <Header />
-      <Footer />
     </>
   );
 };
