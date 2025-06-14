@@ -87,12 +87,26 @@ const Services = () => {
       </section>
       <section className="p-12 grid grid-cols-1 lg:grid-cols-5 bg-white">
         <div className="lg:col-span-5 flex flex-row gap-x-20">
-          <h1 className="ml-20 mt-30 w-[35rem] text-[2rem] sm:text-[2rem] md:text-[2.5rem] lg:text-[3.5rem] font-extrabold leading-tight text-[var(--secondary)] mb-6 flex-shrink-0">
+          <h1
+            data-aos="fade-right"
+            data-aos-delay="200"
+            data-aos-duration="1000"
+            data-aos-easing="ease-in-out"
+            data-aos-once="true"
+            className="ml-20 mt-30 w-[35rem] text-[2rem] sm:text-[2rem] md:text-[2.5rem] lg:text-[3.5rem] font-extrabold leading-tight text-[var(--secondary)] mb-6 flex-shrink-0"
+          >
             Why Home Care May Be Right for{" "}
             <span className="text-[var(--primary)]">You.</span>
           </h1>
 
-          <div className="flex flex-col max-w-[35rem] mt-40">
+          <div
+            data-aos="fade-left"
+            data-aos-delay="200"
+            data-aos-duration="1000"
+            data-aos-easing="ease-in-out"
+            data-aos-once="true"
+            className="flex flex-col max-w-[35rem] mt-40"
+          >
             <p className="text-base sm:text-lg text-gray-700 mb-6">
               Experience compassionate, professional care designed to support
               your independence and enhance your quality of life—right in the
