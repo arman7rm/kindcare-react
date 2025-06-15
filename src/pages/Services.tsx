@@ -1,5 +1,7 @@
 import heroImage from "../assets/ServicesHeroImage.png";
 import patientImage from "../assets/patientwithaid.png";
+import CareServices from "../components/CareServices";
+import ScrollToHash from "../components/ScrollToHash";
 
 const Services = () => {
   return (
@@ -37,7 +39,7 @@ const Services = () => {
             data-aos-once="true"
             src={heroImage}
             alt="Senior Home Care"
-            className="h-full w-full rounded-l-[25px] object-cover"
+            className="h-full w-full rounded-l-[25px] object-cover shadow-2xl"
           />
         </div>
       </section>
@@ -59,7 +61,7 @@ const Services = () => {
             professional caregivers provide the compassionate support you need
             to maintain your quality of life.
           </p>
-          <p className="mb-20 text-base text-white sm:text-lg lg:mb-15 md:text-xl">
+          <p className="mb-20 text-base text-white sm:text-lg md:text-xl lg:mb-15">
             We create care plans tailored to your needs—so you or your loved one
             can age in place with confidence, dignity, and peace of mind.
           </p>
@@ -72,7 +74,7 @@ const Services = () => {
           data-aos-duration="1000"
           data-aos-easing="ease-in-out"
           data-aos-once="true"
-          className=" h-64 w-2xl flex-col items-center sm:pt-0 sm:pl-10 md:h-[30rem] lg:h-auto lg:pt-0 lg:pl-25 xl:pl-10 xl:mt-10"
+          className="h-64 w-2xl flex-col items-center sm:pt-0 sm:pl-10 md:h-[30rem] lg:h-auto lg:pt-0 lg:pl-25 xl:mt-10 xl:pl-10"
         >
           <h1 className="mb-6 ml-10 w-70 text-[2rem] leading-tight font-extrabold text-white sm:text-[3rem] md:w-100 md:text-[3rem] lg:text-[2.75rem] xl:ml-0">
             Compassionate In-Home Support That Helps You{" "}
@@ -81,11 +83,11 @@ const Services = () => {
           <img
             src={patientImage}
             alt=""
-            className="z-10 mb-[-30%] ml-30 w-60 rounded-[25px] md:mb-[-80%] md:ml-45 md:w-100 lg:mb-[-30%] xl:mb-[-25%] lg:ml-70 xl:ml-25"
+            className="z-10 mb-[-30%] ml-30 w-60 rounded-[25px] shadow-2xl md:mb-[-80%] md:ml-45 md:w-100 lg:mb-[-30%] lg:ml-70 xl:mb-[-25%] xl:ml-25"
           />
         </div>
       </section>
-      <section className="flex flex-col bg-white p-12 lg:flex-row lg:gap-10 xl:gap-20 xl:m-auto xl:justify-center">
+      <section className="flex flex-col bg-white p-12 lg:flex-row lg:gap-10 xl:m-auto xl:justify-center xl:gap-20">
         {/* left/bottom section */}
         <h1
           data-aos="fade-right"
@@ -93,7 +95,7 @@ const Services = () => {
           data-aos-duration="1000"
           data-aos-easing="ease-in-out"
           data-aos-once="true"
-          className="mt-20 w-60 md:w-120 flex-shrink-0 text-[2rem] leading-tight font-extrabold text-[var(--secondary)] sm:mt-20 sm:text-[2rem] md:text-[2.5rem] lg:mt-70 lg:ml-0 lg:w-100 lg:text-[3rem]"
+          className="mt-20 w-60 flex-shrink-0 text-[2rem] leading-tight font-extrabold text-[var(--secondary)] sm:mt-20 sm:text-[2rem] md:w-120 md:text-[2.5rem] lg:mt-70 lg:ml-0 lg:w-100 lg:text-[3rem]"
         >
           Why Home Care May Be Right for{" "}
           <span className="text-[var(--primary)]">You.</span>
@@ -122,6 +124,8 @@ const Services = () => {
           </p>
         </div>
       </section>
+      <ScrollToHash />
+      <CareServices />
     </>
   );
 };

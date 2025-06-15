@@ -33,7 +33,7 @@ const ServiceList = () => {
           title="Hospice Care"
           description="When a loved one faces a life-limiting illness, our team offers compassionate care and comfort—bringing peace, dignity, and support to every moment."
           buttonText="Learn More"
-          buttonLink="#"
+          buttonLink="/services#hospice"
           fadeDirection="fade-right"
         />
         <Card
@@ -41,7 +41,7 @@ const ServiceList = () => {
           title="Palliative Care"
           description="Whether you're healing from surgery or managing a chronic condition, our skilled nurses and therapists provide personalized care—right at home—so you can focus on what matters most: feeling your best."
           buttonText="Learn More"
-          buttonLink="#"
+          buttonLink="/services#palliative"
           fadeDirection="fade-up"
         />
         <Card
@@ -49,7 +49,7 @@ const ServiceList = () => {
           title="Home Health Care"
           description="For those facing a serious illness, our compassionate team provides expert care to ease symptoms and enhance quality of life."
           buttonText="Learn More"
-          buttonLink="#"
+          buttonLink="/services#homehealth"
           fadeDirection="fade-left"
         />
       </div>

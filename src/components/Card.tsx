@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 interface CardProps {
   imageSrc: string;
@@ -39,12 +40,12 @@ const Card: React.FC<CardProps> = ({
         <p className="mb-6 flex-grow text-sm sm:mb-8 sm:text-base">
           {description}
         </p>
-        <a
-          href={buttonLink}
+        <Link
+          to={buttonLink}
           className="w-max rounded-2xl bg-[var(--primary)] px-4 py-2 text-sm text-white transition-colors hover:bg-[var(--secondary)] sm:px-6 sm:py-3 sm:text-base"
         >
           {buttonText}
-        </a>
+        </Link>
       </div>
     </article>
   );
