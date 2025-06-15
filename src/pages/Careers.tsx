@@ -1,10 +1,5 @@
-
-
 const Careers = () => {
-  return (
-    <>
-    </>
-  );
+  return <></>;
 };
 
 export default Careers;

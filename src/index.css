@@ -2,15 +2,15 @@
 :root {
   --white: #ffffff;
   --primary: #22577a;
-  --secondary: #57CC99;
-  --lightgreen: #80ED99;
-  --teal: #C7F9CC;
+  --secondary: #57cc99;
+  --lightgreen: #80ed99;
+  --teal: #c7f9cc;
   --font-size: 1.5rem;
   --urbanist: "Urbanist", sans-serif;
   --asset: "Asset", serif;
   --chonburi: "Chonburi", serif;
 }
 
-#root{
+#root {
   padding: 0;
 }

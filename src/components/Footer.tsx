@@ -1,5 +1,3 @@
-
-
 const Footer = () => {
   return (
     <footer className="mx-auto grid grid-cols-1 rounded-t-[35px] bg-white pt-6 pb-6 sm:p-8 md:grid-cols-12 md:p-12 xl:max-w-[1200px] [@media(max-width:449px)]:pl-5">

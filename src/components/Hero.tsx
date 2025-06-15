@@ -3,8 +3,7 @@ import patient from "../assets/patient.png";
 const Hero = () => {
   return (
     <main className="bg-[var(--secondary)] text-white">
-      <section className="grid grid-cols-1 gap-8 bg-[var(--teal)] px-4 py-12 text-[var(--primary)] sm:px-8 md:py-24 lg:grid-cols-7"
-        >
+      <section className="grid grid-cols-1 gap-8 bg-[var(--teal)] px-4 py-12 text-[var(--primary)] sm:px-8 md:py-24 lg:grid-cols-7">
         <div
           data-aos="fade-right"
           data-aos-delay="200"

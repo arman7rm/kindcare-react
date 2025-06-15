@@ -5,7 +5,10 @@ interface MobileMenuBtnProps {
   isExpanded: boolean;
 }
 
-const MobileMenuBtn: React.FC<MobileMenuBtnProps> = ({ onToggle, isExpanded }) => {
+const MobileMenuBtn: React.FC<MobileMenuBtnProps> = ({
+  onToggle,
+  isExpanded,
+}) => {
   return (
     <div className="grid grid-cols-3 bg-white p-4 lg:hidden">
       <div className="col-start-1"></div>

@@ -30,7 +30,7 @@ const MobileMenuNav: React.FC = () => {
 
       // Reset dropdowns
       Object.values(dropdownRefs.current).forEach((dropdown) =>
-        dropdown?.classList.add("hidden")
+        dropdown?.classList.add("hidden"),
       );
 
       Object.values(buttonRefs.current).forEach((btn) => {
@@ -71,7 +71,7 @@ const MobileMenuNav: React.FC = () => {
       if (!isMenuOpen || !menuRef.current) return;
 
       const focusableElements = menuRef.current.querySelectorAll<HTMLElement>(
-        'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+        'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])',
       );
 
       const first = focusableElements[0];

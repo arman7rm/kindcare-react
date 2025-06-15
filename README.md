@@ -12,10 +12,10 @@ At Kind Care Wellness, we believe in care that nurtures the whole person—body,
 
 **Services include:**
 
-- ✅ Skilled Nursing Care  
-- ✅ Physical and Occupational Therapy  
-- ✅ Palliative & Hospice Support  
-- ✅ Home Health Aides  
+- ✅ Skilled Nursing Care
+- ✅ Physical and Occupational Therapy
+- ✅ Palliative & Hospice Support
+- ✅ Home Health Aides
 - ✅ Emotional and Spiritual Counseling
 
 ---
@@ -24,21 +24,22 @@ At Kind Care Wellness, we believe in care that nurtures the whole person—body,
 
 This website was built using:
 
-- **HTML5 & Tailwind CSS** – for clean, responsive, and accessible UI  
-- **AOS (Animate on Scroll)** – to enhance user experience with smooth, subtle animations  
-- **JavaScript** – for minor interactivity  
-- **GitHub Pages** – for easy deployment and hosting  
+- **HTML5 & Tailwind CSS** – for clean, responsive, and accessible UI
+- **AOS (Animate on Scroll)** – to enhance user experience with smooth, subtle animations
+- **JavaScript** – for minor interactivity
+- **GitHub Pages** – for easy deployment and hosting
 
 ---
 
 ## 🚀 Features
 
-- Elegant and responsive layout optimized for all devices  
-- AOS-powered fade-in animations  
-- Tailwind utility-first styling  
-- Simple, readable code structure for easy updates  
+- Elegant and responsive layout optimized for all devices
+- AOS-powered fade-in animations
+- Tailwind utility-first styling
+- Simple, readable code structure for easy updates
 
 ---
+
 ## 🚀 Future Enhancements
 
 - **Dynamic Contact Form:** Integrate a user-friendly contact interface.
@@ -50,8 +51,7 @@ This website was built using:
 
 ## 🤝 Acknowledgments
 
-This project is built by [Mohamed Salam](https://github.com/arman7rm)—dedicated to those who care for others.
----
+## This project is built by [Mohamed Salam](https://github.com/arman7rm)—dedicated to those who care for others.
 
 ## 📂 How to Use
 
@@ -69,3 +69,4 @@ npm i
 
 # Start Server
 npm run dev
+```
