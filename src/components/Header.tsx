@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import kindCareLogo from "../assets/kindcare.png";
 
 const Header = () => {
@@ -95,6 +95,8 @@ const Header = () => {
                     Compliance & Ethics
                   </a>
                 </li>
+                {/* ToDO:
+                
                 <li role="none">
                   <a
                     href="#autism"
@@ -103,7 +105,7 @@ const Header = () => {
                   >
                     Donate
                   </a>
-                </li>
+                </li> */}
               </ul>
             </div>
           </div>
@@ -132,31 +134,31 @@ const Header = () => {
             >
               <ul role="none">
                 <li role="none">
-                  <a
-                    href="#autism"
+                  <Link
+                    to="/services#palliative"
                     className="block py-1 text-lg text-white hover:underline xl:text-xl"
                     role="menuitem"
                   >
                     Hospice Care
-                  </a>
+                  </Link>
                 </li>
                 <li role="none">
-                  <a
-                    href="#autism"
+                  <Link
+                    to="/services#palliative"
                     className="block py-1 text-lg text-white hover:underline xl:text-xl"
                     role="menuitem"
                   >
                     Palliative Care
-                  </a>
+                  </Link>
                 </li>
                 <li role="none">
-                  <a
-                    href="#autism"
+                  <Link
+                    to="/services#homehealth"
                     className="block py-1 text-lg text-white hover:underline xl:text-xl"
                     role="menuitem"
                   >
                     Home Health Care
-                  </a>
+                  </Link>
                 </li>
               </ul>
             </div>
