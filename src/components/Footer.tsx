@@ -68,31 +68,31 @@ const Footer = () => {
       <div className="mb-6 flex flex-col space-y-2 md:col-span-2 md:col-start-7 md:mb-0">
         <h3 className="font-semibold text-[var(--primary)]">Quick Links</h3>
         <a
-          href="#about"
+          href="/about"
           className="px-2 py-1 text-sm text-[var(--primary)] hover:text-[var(--secondary)]"
         >
           About Us
         </a>
         <a
-          href="#services"
+          href="/services"
           className="px-2 py-1 text-sm text-[var(--primary)] hover:text-[var(--secondary)]"
         >
           Services
         </a>
-        <a
+        {/* <a
           href="#blog"
           className="px-2 py-1 text-sm text-[var(--primary)] hover:text-[var(--secondary)]"
         >
           Blog
-        </a>
+        </a> */}
         <a
-          href="#careers"
+          href="/careers"
           className="px-2 py-1 text-sm text-[var(--primary)] hover:text-[var(--secondary)]"
         >
           Join Our Team
         </a>
         <a
-          href="#register"
+          href="/register"
           className="mt-2 w-max rounded-2xl bg-[var(--primary)] px-4 py-2 text-sm text-white hover:bg-[var(--secondary)] focus:ring-2 focus:ring-[var(--primary)] focus:ring-offset-2 focus:outline-none"
         >
           Request Consultation
@@ -102,7 +102,7 @@ const Footer = () => {
       <div className="mb-6 flex flex-col space-y-2 md:col-span-2 md:col-start-9 md:mb-0">
         <h3 className="font-semibold text-[var(--primary)]">Resources</h3>
         <a
-          href="#Contact"
+          href="/Contact"
           className="px-2 py-1 text-sm text-[var(--primary)] hover:text-[var(--secondary)]"
         >
           Contact Us
@@ -120,13 +120,13 @@ const Footer = () => {
           Employees
         </a>
         <a
-          href="#referrals"
+          href="/referrals"
           className="px-2 py-1 text-sm text-[var(--primary)] hover:text-[var(--secondary)]"
         >
           Referrals
         </a>
         <a
-          href="#blog"
+          href="/blog"
           className="px-2 py-1 text-sm text-[var(--primary)] hover:text-[var(--secondary)]"
         >
           How To Pay For Home Care
