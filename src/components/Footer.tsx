@@ -108,7 +108,7 @@ const Footer = () => {
           Contact Us
         </a>
         <a
-          href="#services"
+          href="/Faq"
           className="px-2 py-1 text-sm text-[var(--primary)] hover:text-[var(--secondary)]"
         >
           FAQs
