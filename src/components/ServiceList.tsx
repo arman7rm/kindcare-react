@@ -22,7 +22,7 @@ const ServiceList = () => {
           Comprehensive{" "}
           <span className="text-[var(--white)]">Care Services</span>
         </h2>
-        <p className="mx-auto mt-6 max-w-3xl text-xl text-[var(--white)]">
+        <p className="mx-auto mt-6 max-w-3xl text-xl text-[var(--primary)]">
           Delivering exceptional care tailored to your unique needs—because
           everyone deserves comfort and dignity.
         </p>

@@ -47,7 +47,7 @@ const Card: React.FC<CardProps> = ({
 
       <div className="flex h-full flex-col px-6 py-6 sm:px-8 sm:py-8">
         <h3
-          className="mb-3 text-2xl font-bold sm:mb-4 sm:text-3xl"
+          className="mb-3 text-2xl font-bold sm:mb-4 sm:text-3xl text-[var(--primary)]"
         >
           {title}
         </h3>
