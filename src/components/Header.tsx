@@ -81,31 +81,31 @@ const Header = () => {
             >
               <ul role="none">
                 <li role="none">
-                  <a
-                    href="#autism"
+                  <Link
+                    to="/about#whykindcare"
                     className="block py-1 text-lg text-white hover:underline xl:text-xl"
                     role="menuitem"
                   >
                     Why KindCare?
-                  </a>
+                  </Link>
                 </li>
                 <li role="none">
-                  <a
-                    href="#autism"
+                  <Link
+                    to="/about#mission"
                     className="block py-1 text-lg text-white hover:underline xl:text-xl"
                     role="menuitem"
                   >
-                    Our Leadership
-                  </a>
+                    Our Mission
+                  </Link>
                 </li>
                 <li role="none">
-                  <a
-                    href="#autism"
+                  <Link
+                    to="/about#compliance"
                     className="block py-1 text-lg text-white hover:underline xl:text-xl"
                     role="menuitem"
                   >
                     Compliance & Ethics
-                  </a>
+                  </Link>
                 </li>
                 {/* 
                 
