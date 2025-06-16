@@ -13,26 +13,38 @@ const Header = () => {
           className="h-50 max-w-full md:h-30 lg:h-45"
         />
       </div>
-      <address className="col-span-2 col-start-5 row-start-1 flex flex-col items-end justify-end pr-4 text-right text-sm text-[var(--primary)] not-italic">
-        <p>
+      <address className="col-span-4 col-start-3 row-start-1 flex flex-wrap items-center justify-end gap-x-6 gap-y-2 pr-4 text-sm text-[var(--primary)] not-italic">
+        <div className="flex items-center gap-1">
+          <span className="text-[var(--secondary)]">
+            <i className="fas fa-clock mr-1"></i>
+          </span>
           <span className="font-semibold">Hours:</span> Mon-Fri | 9am-5pm
-        </p>
-        <p>
+        </div>
+        <div className="flex items-center gap-1">
+          <span className="text-[var(--secondary)]">
+            <i className="fas fa-map-marker-alt mr-1"></i>
+          </span>
           <span className="font-semibold">Location:</span> 131 PALISADE AVE,
           Jersey City, NJ 07306
-        </p>
-        <p>
+        </div>
+        <div className="flex items-center gap-1">
+          <span className="text-[var(--secondary)]">
+            <i className="fas fa-phone-alt mr-1"></i>
+          </span>
           <span className="font-semibold">Phone:</span>
           <a href="tel:+12012859722" className="hover:underline">
             (201) 285-9722
           </a>
-        </p>
-        <p>
+        </div>
+        <div className="flex items-center gap-1">
+          <span className="text-[var(--secondary)]">
+            <i className="fas fa-envelope mr-1"></i>
+          </span>
           <span className="font-semibold">Email:</span>
           <a href="mailto:support@kindcare.com" className="hover:underline">
             support@kindcare.com
           </a>
-        </p>
+        </div>
       </address>
 
       <nav
@@ -95,7 +107,7 @@ const Header = () => {
                     Compliance & Ethics
                   </a>
                 </li>
-                {/* ToDO:
+                {/* 
                 
                 <li role="none">
                   <a
