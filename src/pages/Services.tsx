@@ -3,7 +3,7 @@ import patientImage from "../assets/patientwithaid.png";
 import CareServices from "../components/CareServices";
 import ScrollToHash from "../components/ScrollToHash";
 
-const Services = () => {
+const Services: React.FC= () => {
   return (
     <>
       <section className="flex flex-col bg-white lg:flex-row xl:mb-10 xl:gap-20">
