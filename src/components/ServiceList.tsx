@@ -41,7 +41,6 @@ const ServiceList = () => {
           buttonText="Explore Hospice Care"
           buttonLink="/services#hospice"
           fadeDirection="fade-right"
-          accentColor="var(--primary)"
         />
         <Card
           imageSrc={palliativeImage}
@@ -56,7 +55,6 @@ const ServiceList = () => {
           buttonText="Discover Palliative Care"
           buttonLink="/services#palliative"
           fadeDirection="fade-up"
-          accentColor="var(--secondary)"
           featured={true}
         />
         <Card
@@ -72,7 +70,6 @@ const ServiceList = () => {
           buttonText="Learn About Home Care"
           buttonLink="/services#homehealth"
           fadeDirection="fade-left"
-          accentColor="var(--primary)"
         />
       </div>
 

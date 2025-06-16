@@ -9,7 +9,6 @@ interface CardProps {
   buttonLink: string;
   fadeDirection: string;
   features?: string[];
-  accentColor?: string;
   featured?: boolean;
 }
 
@@ -21,7 +20,6 @@ const Card: React.FC<CardProps> = ({
   buttonLink,
   fadeDirection,
   features = [],
-  accentColor = "var(--primary)",
   featured = false,
 }) => {
   return (
@@ -41,28 +39,25 @@ const Card: React.FC<CardProps> = ({
           alt={title}
           className="h-full w-full object-cover transition-transform duration-500 hover:scale-105"
         />
-        <div 
-          className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[${accentColor}] to-transparent"
-          style={{ backgroundColor: accentColor }}
+        <div
+          className="via-[${accentColor}] absolute right-0 bottom-0 left-0 h-1 bg-gradient-to-r from-transparent to-transparent"
+          
         ></div>
       </div>
 
       <div className="flex h-full flex-col px-6 py-6 sm:px-8 sm:py-8">
-        <h3 
+        <h3
           className="mb-3 text-2xl font-bold sm:mb-4 sm:text-3xl"
-          style={{ color: accentColor }}
         >
           {title}
         </h3>
-        <p className="mb-4 text-gray-700 sm:mb-6 sm:text-lg">
-          {description}
-        </p>
-        
+        <p className="mb-4 text-gray-700 sm:mb-6 sm:text-lg">{description}</p>
+
         {features.length > 0 && (
           <ul className="mb-6 space-y-2 sm:mb-8">
             {features.map((feature, index) => (
               <li key={index} className="flex items-start">
-                <span className="mr-2 mt-1 text-[var(--secondary)]">✓</span>
+                <span className="mt-1 mr-2 text-[var(--secondary)]">✓</span>
                 <span className="text-gray-700 sm:text-lg">{feature}</span>
               </li>
             ))}
@@ -72,8 +67,7 @@ const Card: React.FC<CardProps> = ({
         <div className="mt-auto pt-4">
           <Link
             to={buttonLink}
-            className={`inline-block w-full rounded-lg px-6 py-3 text-center font-bold text-white transition-all hover:opacity-90 sm:text-lg`}
-            style={{ backgroundColor: accentColor }}
+            className={`inline-block bg-[var(--primary)] w-full rounded-lg px-6 py-3 text-center font-bold text-white transition-all hover:bg-[var(--secondary)] sm:text-lg`}
           >
             {buttonText}
           </Link>
