@@ -136,25 +136,25 @@ const Footer = () => {
       <div className="flex flex-col space-y-2 md:col-span-2 md:col-start-11">
         <h3 className="font-semibold text-[var(--primary)]">Legal</h3>
         <a
-          href="#Contact"
+          href="/legal#compliance"
           className="px-2 py-1 text-sm text-[var(--primary)] hover:text-[var(--secondary)]"
         >
           Compliance
         </a>
         <a
-          href="#services"
+          href="/legal#privacy-notice"
           className="px-2 py-1 text-sm text-[var(--primary)] hover:text-[var(--secondary)]"
         >
           Privacy Notice for Clients
         </a>
         <a
-          href="#blog"
+          href="/legal#hippa"
           className="px-2 py-1 text-sm text-[var(--primary)] hover:text-[var(--secondary)]"
         >
           HIPAA
         </a>
         <a
-          href="#blog"
+          href="/legal#ethics-safety"
           className="px-2 py-1 text-sm text-[var(--primary)] hover:text-[var(--secondary)]"
         >
           Ethics and Safety

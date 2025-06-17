@@ -1,4 +1,4 @@
-const Careers = () => {
+const Careers: React.FC = () => {
   return <></>;
 };
 
