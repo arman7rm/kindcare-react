@@ -22,7 +22,7 @@ function App() {
     });
   }, []);
   return (
-    <BrowserRouter>
+    <BrowserRouter  basename="/kindcare-react">
       <header className="lg:hidden">
         <MobileMenuNav />
       </header>
