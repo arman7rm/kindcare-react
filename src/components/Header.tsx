@@ -52,7 +52,7 @@ const Header = () => {
         aria-label="Main navigation"
       >
         <a
-          href="/"
+          href="/kindcare-react"
           className="px-2 py-2 text-lg text-[var(--primary)] hover:rounded-[15px] hover:bg-[var(--primary)] hover:text-white lg:text-xs xl:text-sm"
         >
           Home
