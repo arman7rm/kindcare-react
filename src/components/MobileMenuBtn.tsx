@@ -1,5 +1,5 @@
 import React from "react";
-
+import kindCareLogo from '../assets/kindcare.png'
 interface MobileMenuBtnProps {
   onToggle: () => void;
   isExpanded: boolean;
@@ -15,7 +15,7 @@ const MobileMenuBtn: React.FC<MobileMenuBtnProps> = ({
 
       <div className="col-start-2 flex items-center justify-center">
         <img
-          src="../assets/kindcare.png"
+          src={kindCareLogo}
           alt="KindCare Wellness Logo"
           className="h-30 max-w-full"
         />
