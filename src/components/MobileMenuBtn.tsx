@@ -15,7 +15,7 @@ const MobileMenuBtn: React.FC<MobileMenuBtnProps> = ({
 
       <div className="col-start-2 flex items-center justify-center">
         <img
-          src="./src/assets/kindcare.png"
+          src="../src/assets/kindcare.png"
           alt="KindCare Wellness Logo"
           className="h-30 max-w-full"
         />
