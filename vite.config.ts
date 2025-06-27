@@ -4,6 +4,6 @@ import tailwindcss from "@tailwindcss/vite";
 
 // https://vite.dev/config/
 export default defineConfig({
-  base: '/kindcare-react/', // <--- Add this line
+  base: '/', // <--- Add this line
   plugins: [tailwindcss(), react()],
 });
