@@ -2,7 +2,7 @@ import patient from "../assets/patient.png";
 
 const Hero = () => {
   return (
-    <main className="bg-white  m-auto">
+    <main className="bg-white  m-auto px-4">
       {/* Hero Section */}
       <section className="flex flex-col bg-white lg:flex-row xl:mb-10">
         {/* Left content - Text */}

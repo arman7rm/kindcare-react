@@ -6,6 +6,7 @@ const MobileMenuNav: React.FC = () => {
   const menuRef = useRef<HTMLDivElement>(null);
   const buttonRefs = useRef<{ [key: string]: HTMLButtonElement | null }>({});
   const dropdownRefs = useRef<{ [key: string]: HTMLDivElement | null }>({});
+  const menuButtonRef = useRef<HTMLButtonElement | null>(null);
 
   const toggleDropdown = (id: string) => {
     const dropdown = dropdownRefs.current[id];
@@ -45,7 +46,12 @@ const MobileMenuNav: React.FC = () => {
   // Close on outside click
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
-      if (menuRef.current && !menuRef.current.contains(e.target as Node)) {
+      const target = e.target as Node;
+      if (
+        menuRef.current &&
+        !menuRef.current.contains(target) &&
+        !menuButtonRef.current?.contains(target)
+      ) {
         closeMenu();
       }
     };
@@ -56,18 +62,32 @@ const MobileMenuNav: React.FC = () => {
       }
     };
 
-    document.addEventListener("click", handleClickOutside);
+    // 👇 Delay listener registration to avoid immediate close on open
+    const timeoutId = setTimeout(() => {
+      document.addEventListener("click", handleClickOutside);
+    }, 0);
+
     document.addEventListener("keydown", handleEscape);
 
     return () => {
+      clearTimeout(timeoutId);
       document.removeEventListener("click", handleClickOutside);
       document.removeEventListener("keydown", handleEscape);
     };
   }, []);
 
+  const handleToggle = () => {
+    setIsMenuOpen((prev) => {
+      const next = !prev;
+      return next;
+    });
+  };
+
   // Focus trap
   useEffect(() => {
+    console.log("Menu button is now", isMenuOpen);
     const handleTab = (e: KeyboardEvent) => {
+      console.log(`menu is now ${isMenuOpen}`);
       if (!isMenuOpen || !menuRef.current) return;
 
       const focusableElements = menuRef.current.querySelectorAll<HTMLElement>(
@@ -104,8 +124,9 @@ const MobileMenuNav: React.FC = () => {
   return (
     <>
       <MobileMenuBtn
-        onToggle={() => setIsMenuOpen((prev) => !prev)}
+        onToggle={handleToggle}
         isExpanded={isMenuOpen}
+        buttonRef={menuButtonRef}
       />
 
       <div
@@ -134,7 +155,7 @@ const MobileMenuNav: React.FC = () => {
 
         {/* Navigation */}
         <nav className="flex flex-col space-y-2" aria-label="Mobile navigation">
-          <a href="index.html" className="px-4 py-3 text-lg">
+          <a href="/" className="px-4 py-3 text-lg">
             Home
           </a>
 
@@ -189,7 +210,7 @@ const MobileMenuNav: React.FC = () => {
               id="mobile-services-menu"
               className="mobile-dropdown-content hidden pl-6"
             >
-              <a href="#autism" className="block px-4 py-2">
+              <a href="/services#hospice" className="block px-4 py-2">
                 Hospice Care
               </a>
               <a href="#autism" className="block px-4 py-2">
@@ -201,9 +222,9 @@ const MobileMenuNav: React.FC = () => {
             </div>
           </div>
 
-          <a href="#blog" className="px-4 py-3 text-lg">
+          {/* <a href="#blog" className="px-4 py-3 text-lg">
             Blog
-          </a>
+          </a> */}
           <a href="#careers" className="px-4 py-3 text-lg">
             Careers
           </a>
