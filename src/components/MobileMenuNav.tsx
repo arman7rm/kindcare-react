@@ -135,26 +135,61 @@ const MobileMenuNav: React.FC = () => {
         aria-hidden={!isMenuOpen}
       >
         {/* Contact Info */}
-        <div className="mb-4 text-sm text-[var(--primary)]">
-          <p>
-            <strong>Hours:</strong> Mon-Fri | 9am-5pm
-          </p>
-          <p>
-            <strong>Location:</strong> Jersey City, NJ 07306
-          </p>
-          <p>
-            <strong>Phone:</strong>{" "}
-            <a href="tel:+12012341566">(201) 234-1566</a>
-          </p>
-          <p>
-            <strong>Email:</strong>{" "}
-            <a href="mailto:support@kindcare.com">support@kindcare.com</a>
-          </p>
+        <div className="mb-8 border-gray-200 pb-6">
+          <div className="space-y-3">
+            {/* Hours */}
+            <div className="flex items-center text-base text-gray-700">
+              <i className="far fa-clock mr-3 w-6 text-center text-[var(--secondary)]"></i>{" "}
+              {/* Clock icon */}
+              <p>
+                <strong className="text-[var(--primary)]">Hours:</strong>{" "}
+                Mon-Fri | 9am-5pm
+              </p>
+            </div>
+            {/* Location */}
+            <div className="flex items-center text-base text-gray-700">
+              <i className="fas fa-map-marker-alt mr-3 w-6 text-center text-[var(--secondary)]"></i>{" "}
+              {/* Location icon */}
+              <p>
+                <strong className="text-[var(--primary)]">Location:</strong>{" "}
+                Jersey City, NJ 07306
+              </p>
+            </div>
+            {/* Phone */}
+            <div className="flex items-center text-base">
+              <i className="fas fa-phone-alt mr-3 w-6 text-center text-[var(--secondary)]"></i>{" "}
+              {/* Phone icon */}
+              <a
+                href="tel:+12012341566"
+                className="text-[var(--primary)] transition-colors duration-200 hover:text-[var(--secondary)] hover:underline"
+              >
+                <strong className="text-[var(--primary)]">Phone:</strong> (201)
+                234-1566
+              </a>
+            </div>
+            {/* Email */}
+            <div className="flex items-center text-base">
+              <i className="fas fa-envelope mr-3 w-6 text-center text-[var(--secondary)]"></i>{" "}
+              {/* Email icon */}
+              <a
+                href="mailto:support@kindcare.com"
+                className="text-[var(--primary)] transition-colors duration-200 hover:text-[var(--secondary)] hover:underline"
+              >
+                <strong className="text-[var(--primary)]">Email:</strong>{" "}
+                support@kindcare.com
+              </a>
+            </div>
+          </div>
         </div>
 
         {/* Navigation */}
-        <nav className="flex flex-col space-y-2" aria-label="Mobile navigation">
-          <Link to="/" onClick={closeMenu} className="px-4 py-3 text-lg">
+        <nav className="flex flex-col space-y-1" aria-label="Mobile navigation">
+          {/* Main Navigation Links */}
+          <Link
+            to="/"
+            className="block rounded-lg px-4 py-3 text-lg font-semibold text-[var(--primary)] transition-all duration-200 hover:bg-gray-100 hover:text-[var(--secondary)] focus:ring-2 focus:ring-[var(--primary)] focus:outline-none"
+            onClick={closeMenu}
+          >
             Home
           </Link>
 
@@ -164,20 +199,23 @@ const MobileMenuNav: React.FC = () => {
               ref={(el) => {
                 buttonRefs.current["about"] = el;
               }}
-              className="mobile-dropdown-btn flex w-full justify-between px-4 py-3 text-left text-lg"
+              className="mobile-dropdown-btn flex w-full items-center justify-between rounded-lg px-4 py-3 text-left text-lg font-semibold text-[var(--primary)] transition-all duration-200 hover:bg-gray-100 hover:text-[var(--secondary)] focus:ring-2 focus:ring-[var(--primary)] focus:outline-none"
               aria-expanded="false"
               aria-controls="mobile-about-menu"
               onClick={() => toggleDropdown("about")}
             >
               <span>About Us</span>
-              <span className="fas fa-chevron-down" aria-hidden="true"></span>
+              <span
+                className="fas fa-chevron-down text-sm"
+                aria-hidden="true"
+              ></span>
             </button>
             <div
+              id="mobile-about-menu"
               ref={(el) => {
                 dropdownRefs.current["about"] = el;
               }}
-              id="mobile-about-menu"
-              className="mobile-dropdown-content hidden pl-6"
+              className="mobile-dropdown-content hidden flex-col space-y-1 rounded-b-lg bg-gray-50 pt-1 pb-2 pl-8 shadow-inner"
             >
               <Link
                 to="/about#whykindcare"
@@ -185,7 +223,7 @@ const MobileMenuNav: React.FC = () => {
                   toggleDropdown("about");
                   closeMenu();
                 }}
-                className="block px-4 py-2"
+                className="block rounded-md px-4 py-2 text-base text-gray-700 transition-colors duration-150 hover:bg-gray-200 hover:text-[var(--secondary)] focus:ring-1 focus:ring-[var(--primary)] focus:outline-none"
               >
                 Why KindCare?
               </Link>
@@ -195,7 +233,7 @@ const MobileMenuNav: React.FC = () => {
                   toggleDropdown("about");
                   closeMenu();
                 }}
-                className="block px-4 py-2"
+                className="block rounded-md px-4 py-2 text-base text-gray-700 transition-colors duration-150 hover:bg-gray-200 hover:text-[var(--secondary)] focus:ring-1 focus:ring-[var(--primary)] focus:outline-none"
               >
                 Our Mission
               </Link>
@@ -205,13 +243,18 @@ const MobileMenuNav: React.FC = () => {
                   toggleDropdown("about");
                   closeMenu();
                 }}
-                className="block px-4 py-2"
+                className="block rounded-md px-4 py-2 text-base text-gray-700 transition-colors duration-150 hover:bg-gray-200 hover:text-[var(--secondary)] focus:ring-1 focus:ring-[var(--primary)] focus:outline-none"
               >
                 Compliance & Ethics
               </Link>
-              {/* <Link href="#autism" className="block px-4 py-2">
+              {/* Assuming this is an internal link. If external, use <a> */}
+              <Link
+                to="/donate"
+                onClick={closeMenu}
+                className="block rounded-md px-4 py-2 text-base text-gray-700 transition-colors duration-150 hover:bg-gray-200 hover:text-[var(--secondary)] focus:ring-1 focus:ring-[var(--primary)] focus:outline-none"
+              >
                 Donate
-              </Link> */}
+              </Link>
             </div>
           </div>
 
@@ -221,20 +264,23 @@ const MobileMenuNav: React.FC = () => {
               ref={(el) => {
                 buttonRefs.current["services"] = el;
               }}
-              className="mobile-dropdown-btn flex w-full justify-between px-4 py-3 text-left text-lg"
+              className="mobile-dropdown-btn flex w-full items-center justify-between rounded-lg px-4 py-3 text-left text-lg font-semibold text-[var(--primary)] transition-all duration-200 hover:bg-gray-100 hover:text-[var(--secondary)] focus:ring-2 focus:ring-[var(--primary)] focus:outline-none"
               aria-expanded="false"
               aria-controls="mobile-services-menu"
               onClick={() => toggleDropdown("services")}
             >
               <span>Services</span>
-              <span className="fas fa-chevron-down" aria-hidden="true"></span>
+              <span
+                className="fas fa-chevron-down text-sm"
+                aria-hidden="true"
+              ></span>
             </button>
             <div
+              id="mobile-services-menu"
               ref={(el) => {
                 dropdownRefs.current["services"] = el;
               }}
-              id="mobile-services-menu"
-              className="mobile-dropdown-content hidden pl-6"
+              className="mobile-dropdown-content hidden flex-col space-y-1 rounded-b-lg bg-gray-50 pt-1 pb-2 pl-8 shadow-inner"
             >
               <Link
                 to="/services#hospice"
@@ -242,7 +288,7 @@ const MobileMenuNav: React.FC = () => {
                   toggleDropdown("services");
                   closeMenu();
                 }}
-                className="block px-4 py-2"
+                className="block rounded-md px-4 py-2 text-base text-gray-700 transition-colors duration-150 hover:bg-gray-200 hover:text-[var(--secondary)] focus:ring-1 focus:ring-[var(--primary)] focus:outline-none"
               >
                 Hospice Care
               </Link>
@@ -252,7 +298,7 @@ const MobileMenuNav: React.FC = () => {
                   toggleDropdown("services");
                   closeMenu();
                 }}
-                className="block px-4 py-2"
+                className="block rounded-md px-4 py-2 text-base text-gray-700 transition-colors duration-150 hover:bg-gray-200 hover:text-[var(--secondary)] focus:ring-1 focus:ring-[var(--primary)] focus:outline-none"
               >
                 Palliative Care
               </Link>
@@ -262,26 +308,34 @@ const MobileMenuNav: React.FC = () => {
                   toggleDropdown("services");
                   closeMenu();
                 }}
-                className="block px-4 py-2"
+                className="block rounded-md px-4 py-2 text-base text-gray-700 transition-colors duration-150 hover:bg-gray-200 hover:text-[var(--secondary)] focus:ring-1 focus:ring-[var(--primary)] focus:outline-none"
               >
                 Home Health Care
               </Link>
             </div>
           </div>
 
-          {/* <a href="#blog" className="px-4 py-3 text-lg">
-            Blog
-          </a> */}
-          <a href="#careers" className="px-4 py-3 text-lg">
+          {/* Other direct links (converted to Link where appropriate) */}
+          <Link
+            to="/careers"
+            onClick={closeMenu}
+            className="block rounded-lg px-4 py-3 text-lg font-semibold text-[var(--primary)] transition-all duration-200 hover:bg-gray-100 hover:text-[var(--secondary)] focus:ring-2 focus:ring-[var(--primary)] focus:outline-none"
+          >
             Careers
-          </a>
-          <a href="#contact" className="px-4 py-3 text-lg">
+          </Link>
+          <Link
+            to="/contact"
+            onClick={closeMenu}
+            className="block rounded-lg px-4 py-3 text-lg font-semibold text-[var(--primary)] transition-all duration-200 hover:bg-gray-100 hover:text-[var(--secondary)] focus:ring-2 focus:ring-[var(--primary)] focus:outline-none"
+          >
             Contact Us
-          </a>
+          </Link>
+
+          {/* Request Consultation Button Link */}
           <Link
             to="/#patientform"
             onClick={closeMenu}
-            className="mt-2 bg-[var(--primary)] px-4 py-3 text-center text-white hover:bg-[var(--secondary)]"
+            className="mt-6 block w-full rounded-full bg-[var(--primary)] px-5 py-3 text-center text-lg font-bold text-white shadow-lg transition-all duration-300 hover:bg-[var(--secondary)] focus:ring-2 focus:ring-[var(--primary)] focus:ring-offset-2 focus:outline-none"
           >
             Request Consultation
           </Link>
