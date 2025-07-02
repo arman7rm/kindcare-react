@@ -115,24 +115,24 @@ const Footer = () => {
         >
           FAQs
         </Link>
-        <Link
+        {/* <Link
           to="#referrals"
           className="px-2 py-1 text-sm text-[var(--primary)] hover:text-[var(--secondary)]"
         >
           Employees
-        </Link>
-        <Link
+        </Link> */}
+        {/* <Link
           to="/referrals"
           className="px-2 py-1 text-sm text-[var(--primary)] hover:text-[var(--secondary)]"
         >
           Referrals
-        </Link>
-        <Link
+        </Link> */}
+        {/* <Link
           to="/blog"
           className="px-2 py-1 text-sm text-[var(--primary)] hover:text-[var(--secondary)]"
         >
           How To Pay For Home Care
-        </Link>
+        </Link> */}
       </div>
 
       <div className="flex flex-col space-y-2 md:col-span-2 md:col-start-11">
