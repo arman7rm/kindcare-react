@@ -71,6 +71,7 @@ const PatientForm: React.FC = () => {
     <section
       className="flex min-h-[50vh] items-center justify-center bg-[var(--primary)] py-16 px-4 sm:px-6 lg:px-8"
       aria-labelledby="apply-now-heading"
+      id="patientform"
     >
       <div
         className="flex w-full max-w-6xl flex-col items-center justify-center rounded-[25px] bg-white p-6 shadow-2xl md:flex-row md:p-10 lg:p-16"

@@ -1,17 +1,30 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import kindCareLogo from "../assets/kindcare.png";
+import { useEffect } from "react";
 
 const Header = () => {
   const navigate = useNavigate();
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.hash) {
+      const el = document.querySelector(location.hash);
+      if (el) {
+        el.scrollIntoView({ behavior: "smooth" });
+      }
+    }
+  }, [location]);
 
   return (
     <header className="mx-auto hidden grid-cols-6 grid-rows-2 items-center rounded-t-[35px] bg-white py-4 lg:grid xl:max-w-[1200px]">
       <div className="col-start-1 row-span-2 flex items-center">
-        <img
-          src={kindCareLogo}
-          alt="KindCare Wellness Logo"
-          className="h-50 max-w-full md:h-30 lg:h-45"
-        />
+        <Link to="/">
+          <img
+            src={kindCareLogo}
+            alt="KindCare Wellness Logo"
+            className="h-50 max-w-full md:h-30 lg:h-45"
+          />
+        </Link>
       </div>
       <address className="col-span-4 col-start-3 row-start-1 flex flex-wrap items-center justify-end gap-x-6 gap-y-2 pr-4 text-sm text-[var(--primary)] not-italic">
         <div className="flex items-center gap-1">
@@ -51,12 +64,12 @@ const Header = () => {
         className="col-span-5 col-start-2 row-start-2 hidden items-center justify-center space-x-4 px-4 lg:flex xl:space-x-10"
         aria-label="Main navigation"
       >
-        <a
-          href="/kindcare-react"
+        <Link
+          to="/"
           className="px-2 py-2 text-lg text-[var(--primary)] hover:rounded-[15px] hover:bg-[var(--primary)] hover:text-white lg:text-xs xl:text-sm"
         >
           Home
-        </a>
+        </Link>
         <div className="group relative" role="none">
           <div className="flex flex-col">
             <button
@@ -194,12 +207,12 @@ const Header = () => {
         >
           Contact Us
         </a>
-        <a
-          href="#register"
+        <Link
+          to="/#patientform"
           className="rounded-2xl bg-[var(--primary)] px-4 py-2 text-sm text-white transition-colors hover:bg-[var(--secondary)] lg:text-xs xl:px-6 xl:py-3 xl:text-base"
         >
           Request Consultation
-        </a>
+        </Link>
       </nav>
     </header>
   );

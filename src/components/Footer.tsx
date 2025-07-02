@@ -94,7 +94,7 @@ const Footer = () => {
           Join Our Team
         </Link>
         <Link
-          to="/register"
+          to="/#patientform"
           className="mt-2 w-max rounded-2xl bg-[var(--primary)] px-4 py-2 text-sm text-white hover:bg-[var(--secondary)] focus:ring-2 focus:ring-[var(--primary)] focus:ring-offset-2 focus:outline-none"
         >
           Request Consultation

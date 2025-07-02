@@ -89,7 +89,7 @@ const ServiceList = () => {
           unique situation.
         </p>
         <a
-          href="/contact"
+          href="tel:+12012859722t"
           className="mt-6 inline-block rounded-full bg-[var(--primary)] px-8 py-3 text-lg font-bold text-white transition-all hover:bg-[var(--secondary)] hover:shadow-lg"
         >
           Speak With a Care Coordinator

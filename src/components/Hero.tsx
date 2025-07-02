@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import patient from "../assets/patient.png";
 
 const Hero = () => {
@@ -21,12 +22,12 @@ const Hero = () => {
             Experience the comfort of professional healthcare services delivered with warmth and expertise—right where you're most comfortable: in your own home.
           </p>
           <div className="flex flex-col gap-4 sm:flex-row sm:gap-6">
-            <a
-              href="#register"
+            <Link
+              to="/#patientform"
               className="rounded-full bg-[var(--primary)] px-8 py-3 text-center text-base font-bold text-white transition-colors hover:bg-[var(--secondary)] shadow-md"
             >
               Request Consultation
-            </a>
+            </Link>
             <a
               href="/services"
               className="rounded-full border-2 border-[var(--primary)] px-8 py-3 text-center text-base font-bold text-[var(--primary)] transition-colors hover:bg-[var(--primary)] hover:text-white shadow-md"
