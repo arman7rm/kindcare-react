@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import MobileMenuBtn from "./MobileMenuBtn";
+import { Link } from "react-router-dom";
 
 const MobileMenuNav: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -85,9 +86,7 @@ const MobileMenuNav: React.FC = () => {
 
   // Focus trap
   useEffect(() => {
-    console.log("Menu button is now", isMenuOpen);
     const handleTab = (e: KeyboardEvent) => {
-      console.log(`menu is now ${isMenuOpen}`);
       if (!isMenuOpen || !menuRef.current) return;
 
       const focusableElements = menuRef.current.querySelectorAll<HTMLElement>(
@@ -155,9 +154,9 @@ const MobileMenuNav: React.FC = () => {
 
         {/* Navigation */}
         <nav className="flex flex-col space-y-2" aria-label="Mobile navigation">
-          <a href="/" className="px-4 py-3 text-lg">
+          <Link to="/" onClick={closeMenu} className="px-4 py-3 text-lg">
             Home
-          </a>
+          </Link>
 
           {/* About Us Dropdown */}
           <div className="relative">
@@ -174,21 +173,45 @@ const MobileMenuNav: React.FC = () => {
               <span className="fas fa-chevron-down" aria-hidden="true"></span>
             </button>
             <div
+              ref={(el) => {
+                dropdownRefs.current["about"] = el;
+              }}
               id="mobile-about-menu"
               className="mobile-dropdown-content hidden pl-6"
             >
-              <a href="#autism" className="block px-4 py-2">
+              <Link
+                to="/about#whykindcare"
+                onClick={() => {
+                  toggleDropdown("about");
+                  closeMenu();
+                }}
+                className="block px-4 py-2"
+              >
                 Why KindCare?
-              </a>
-              <a href="#autism" className="block px-4 py-2">
-                Our Leadership
-              </a>
-              <a href="#autism" className="block px-4 py-2">
+              </Link>
+              <Link
+                to="/about#mission"
+                onClick={() => {
+                  toggleDropdown("about");
+                  closeMenu();
+                }}
+                className="block px-4 py-2"
+              >
+                Our Mission
+              </Link>
+              <Link
+                to="/about#compliance"
+                onClick={() => {
+                  toggleDropdown("about");
+                  closeMenu();
+                }}
+                className="block px-4 py-2"
+              >
                 Compliance & Ethics
-              </a>
-              <a href="#autism" className="block px-4 py-2">
+              </Link>
+              {/* <Link href="#autism" className="block px-4 py-2">
                 Donate
-              </a>
+              </Link> */}
             </div>
           </div>
 
@@ -207,18 +230,42 @@ const MobileMenuNav: React.FC = () => {
               <span className="fas fa-chevron-down" aria-hidden="true"></span>
             </button>
             <div
+              ref={(el) => {
+                dropdownRefs.current["services"] = el;
+              }}
               id="mobile-services-menu"
               className="mobile-dropdown-content hidden pl-6"
             >
-              <a href="/services#hospice" className="block px-4 py-2">
+              <Link
+                to="/services#hospice"
+                onClick={() => {
+                  toggleDropdown("services");
+                  closeMenu();
+                }}
+                className="block px-4 py-2"
+              >
                 Hospice Care
-              </a>
-              <a href="#autism" className="block px-4 py-2">
+              </Link>
+              <Link
+                to="/services#palliative"
+                onClick={() => {
+                  toggleDropdown("services");
+                  closeMenu();
+                }}
+                className="block px-4 py-2"
+              >
                 Palliative Care
-              </a>
-              <a href="#autism" className="block px-4 py-2">
+              </Link>
+              <Link
+                to="/services#homehealth"
+                onClick={() => {
+                  toggleDropdown("services");
+                  closeMenu();
+                }}
+                className="block px-4 py-2"
+              >
                 Home Health Care
-              </a>
+              </Link>
             </div>
           </div>
 
@@ -231,12 +278,13 @@ const MobileMenuNav: React.FC = () => {
           <a href="#contact" className="px-4 py-3 text-lg">
             Contact Us
           </a>
-          <a
-            href="#register"
+          <Link
+            to="/#patientform"
+            onClick={closeMenu}
             className="mt-2 bg-[var(--primary)] px-4 py-3 text-center text-white hover:bg-[var(--secondary)]"
           >
             Request Consultation
-          </a>
+          </Link>
         </nav>
       </div>
     </>
