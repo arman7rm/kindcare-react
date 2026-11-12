@@ -1,366 +1,126 @@
-import React, { useEffect } from "react";
-import "aos/dist/aos.css";
-import { useLocation } from "react-router-dom";
+import React from "react";
+import { PageHero, Section } from "../components/ui";
+import { COMPLIANCE, CONTACT } from "../content/site";
 
+const LegalBlock = ({
+  id,
+  title,
+  children,
+}: {
+  id: string;
+  title: string;
+  children: React.ReactNode;
+}) => (
+  <Section id={id} className="scroll-mt-20">
+    <div className="grid gap-10 lg:grid-cols-12">
+      <h2 className="text-[clamp(26px,2.6vw,38px)] leading-[1.15] text-fg lg:col-span-4">
+        {title}
+      </h2>
+      <div className="space-y-5 leading-relaxed text-muted lg:col-span-7 lg:col-start-6 [&_h3]:pt-2 [&_h3]:font-medium [&_h3]:text-fg">
+        {children}
+      </div>
+    </div>
+  </Section>
+);
 
-const LegalCompliance: React.FC = () => {
-  const location = useLocation();
-
-  useEffect(() => {
-    if (location.hash) {
-      const id = location.hash.substring(1);
-      const element = document.getElementById(id);
-
-      if (element) {
-        element.scrollIntoView({ behavior: "smooth" });
-      }
-    } else {
-      window.scrollTo(0, 0);
-    }
-  }, [location]); 
-
+const Legal: React.FC = () => {
   return (
     <>
-      {/* Compliance Section (Hero-like) */}
-      <section
-        className="flex flex-col bg-white px-4 py-12 sm:px-6 md:py-16 lg:flex-row lg:px-10 lg:py-20 xl:px-20"
-        aria-labelledby="compliance-heading"
-      >
-        {/* Left content */}
-        <div
-          data-aos="fade-right"
-          className="relative z-10 flex flex-col justify-center lg:w-1/2 xl:pr-10"
-        >
-          <h1
-            id="compliance"
-            className="mb-6 text-3xl leading-tight font-extrabold text-[var(--secondary)] sm:text-4xl md:text-5xl lg:text-4xl xl:text-5xl"
-          >
-            Our Unwavering Commitment to{" "}
-            <span className="text-[var(--primary)]">Compliance</span>
-          </h1>
-          <p className="mb-8 text-base text-gray-700 sm:text-lg md:text-xl">
-            At KindCare Wellness, our unwavering commitment to compliance forms
-            the bedrock of our operations. We adhere strictly to all applicable
-            federal, state, and local laws and regulations governing home health
-            agencies. This dedication ensures we consistently provide the
-            highest standard of care while protecting the rights and well-being
-            of our clients. Our comprehensive compliance framework is regularly
-            reviewed and updated to meet evolving healthcare standards and best
-            practices.
-          </p>
-          <p className="pb-4 text-base text-gray-700 sm:text-lg md:text-xl">
-            We believe that transparency and accountability are vital. Our team
-            undergoes continuous training on regulatory requirements and
-            internal policies, fostering a culture where compliance is
-            integrated into every aspect of our service delivery.
-          </p>
-        </div>
+      <PageHero
+        eyebrow="Legal"
+        title="Compliance, privacy and safety"
+        intro={
+          <>
+            How KindCare Health Services meets its obligations to the people we
+            support, their families and the State of New Jersey. Questions?
+            Contact us at{" "}
+            <a href={CONTACT.emailHref} className="text-fg underline underline-offset-2">
+              {CONTACT.email}
+            </a>{" "}
+            or {CONTACT.phone}.
+          </>
+        }
+      />
 
-        {/* Right image/illustration - Placeholder */}
-        <div
-          data-aos="fade-left"
-          className="mt-8 flex h-64 items-center justify-center rounded-l-[25px] bg-gray-100 p-8 shadow-2xl sm:h-80 md:h-96 lg:mt-0 lg:h-auto lg:w-1/2"
-        >
-          <div className="text-center text-xl font-semibold text-[var(--primary)]">
-            <i className="fas fa-gavel mb-4 text-6xl" aria-hidden="true"></i>
-            <p className="text-2xl sm:text-3xl">Compliance Standards</p>
-            <p className="text-lg sm:text-xl">Our Foundation of Trust</p>
-          </div>
-        </div>
-      </section>
+      <LegalBlock id="compliance" title="Compliance">
+        <p>
+          KindCare Health Services is a provider approved by the New Jersey
+          Division of Developmental Disabilities (DDD). We follow the
+          requirements that apply to DDD providers in the Supports Program and
+          the Community Care Program, along with applicable federal and state
+          laws.
+        </p>
+        <p>
+          If you have a concern about our services, please contact us. You can
+          also raise concerns with your Support Coordinator.
+        </p>
+      </LegalBlock>
 
-      {/* Privacy Notice Section */}
-      <section
-        className="flex flex-col rounded-tl-[25px] bg-[var(--primary)] px-4 pt-16 sm:px-6 md:pt-20 lg:flex-row lg:px-10 lg:pt-24 xl:px-20"
-        aria-labelledby="privacy-notice"
-      >
-        {/* Left content */}
-        <div
-          data-aos="fade-right"
-          className="flex flex-col justify-center lg:w-1/2 xl:pr-10"
-        >
-          <h2
-            id="privacy-notice"
-            className="mb-6 text-3xl leading-tight font-extrabold text-white sm:text-4xl md:text-5xl lg:text-4xl xl:text-5xl"
-          >
-            Privacy Notice for{" "}
-            <span className="text-[var(--secondary)]">Clients</span>
-          </h2>
-          <p className="mt-5 mb-8 text-base text-white sm:text-lg md:text-xl">
-            KindCare Wellness is deeply committed to safeguarding your privacy.
-            This Privacy Notice outlines how we collect, use, disclose,
-            transfer, and store your personal and health information. Your trust
-            is paramount, and we handle your data with the utmost care and
-            conﬁdentiality.
-          </p>
+      <LegalBlock id="privacy-notice" title="Privacy notice">
+        <h3>Information we collect</h3>
+        <p>
+          When you use the form on this website, we collect your name, email
+          address, phone number and city and state. Please don't include
+          medical or health information in the form.
+        </p>
+        <p>
+          For people who receive services, we receive information needed to
+          provide those services, such as planning documents (for example the
+          ISP, PCPT, NJ CAT tier and any BSP) from the individual, their family
+          or guardian, and their Support Coordinator.
+        </p>
+        <h3>How we use it</h3>
+        <p>
+          We use this information to respond to inquiries, to plan, provide and
+          coordinate services, and to meet DDD and other legal requirements,
+          including incident reporting. We don't sell personal information.
+        </p>
+        <h3>Who we share it with</h3>
+        <p>
+          We share information only as needed to provide services or as
+          required or permitted by law, for example with the person's Support
+          Coordinator, the Division of Developmental Disabilities, or service
+          providers who help us operate, such as the service that processes
+          our website form.
+        </p>
+        <h3>Your choices</h3>
+        <p>
+          You can ask to see or correct the information we hold about you, or
+          ask us to stop contacting you, by emailing{" "}
+          <a href={CONTACT.emailHref} className="text-fg underline underline-offset-2">
+            {CONTACT.email}
+          </a>
+          .
+        </p>
+      </LegalBlock>
 
-          <h3 className="mb-4 text-xl font-semibold text-[var(--secondary)] sm:text-2xl">
-            Information We Collect:
-          </h3>
-          <p className="mb-8 text-base text-white sm:text-lg md:text-xl">
-            We collect information necessary to provide you with high-quality
-            home health services, including your name, contact details, health
-            status, medical history, and insurance information. We may also
-            collect technical data from your device, such as your IP address,
-            when you interact with our online services.
-          </p>
+      <LegalBlock id="hippa" title="HIPAA">
+        <p>
+          The Health Insurance Portability and Accountability Act (HIPAA) sets
+          national standards for protecting health information. KindCare
+          protects the health information of the people we support and uses
+          and discloses it only as HIPAA allows.
+        </p>
+        <p>
+          Under HIPAA, individuals generally have the right to see and get a
+          copy of their health information, to ask for corrections, and to
+          learn how their information has been shared. To make a request,
+          contact us.
+        </p>
+      </LegalBlock>
 
-          <h3 className="mb-4 text-xl font-semibold text-[var(--secondary)] sm:text-2xl">
-            How We Use Your Information:
-          </h3>
-          <ul
-            className="mb-8 list-disc space-y-2 pl-5 text-white sm:text-lg md:text-xl"
-            aria-label="Ways we use your information"
-          >
-            <li>Deliver personalized care and services.</li>
-            <li>
-              Manage your treatment plan and coordinate care with your
-              healthcare providers.
-            </li>
-            <li>Process billing and insurance claims.</li>
-            <li>Improve our services and internal operations.</li>
-            <li>Comply with legal and regulatory obligations.</li>
-            <li>Communicate important updates regarding your care.</li>
-          </ul>
-
-          <h3 className="mb-4 text-xl font-semibold text-[var(--secondary)] sm:text-2xl">
-            Disclosure of Information:
-          </h3>
-          <p className="mb-8 text-base text-white sm:text-lg md:text-xl">
-            We may disclose your information to healthcare providers involved in
-            your care, family members or guardians with your consent, and
-            third-party service providers who assist us in our operations (e.g.,
-            billing services). All third parties are bound by strict
-            confidentiality agreements. We will never sell your personal
-            information.
-          </p>
-
-          <h3 className="mb-4 text-xl font-semibold text-[var(--secondary)] sm:text-2xl">
-            Your Rights & Electronic Communications:
-          </h3>
-          <p className="text-base text-white sm:text-lg md:text-xl lg:mb-16">
-            You have the right to access your information, request corrections,
-            and understand how your data is used. By using our services and
-            providing your contact information, you consent to receive
-            electronic communications from us, including emails and, with your
-            explicit consent, text messages related to your care and our
-            services. All electronic communications will comply with applicable
-            laws and our privacy practices. Please contact us if you have any
-            questions or concerns regarding your privacy.
-          </p>
-        </div>
-
-        {/* Right image/illustration - Placeholder */}
-        <div
-          data-aos="fade-left"
-          className="flex h-64 items-center justify-center p-8 sm:h-80 md:h-96 lg:mt-0 lg:mb-[-10%] lg:h-auto lg:w-1/2 lg:pl-10"
-        >
-          <div className="text-center text-xl font-semibold text-[var(--secondary)]">
-            <i
-              className="fas fa-user-shield mb-4 text-6xl"
-              aria-hidden="true"
-            ></i>
-            <p className="text-2xl sm:text-3xl">Your Privacy,</p>
-            <p className="text-lg sm:text-xl">Our Priority</p>
-          </div>
-        </div>
-      </section>
-
-      {/* HIPAA Section */}
-      <section
-        className="flex flex-col bg-white px-4 pt-24 pb-12 sm:px-6 md:pt-32 lg:flex-row lg:gap-10 lg:pt-20 lg:pb-16 xl:justify-center xl:gap-20 xl:px-20"
-        aria-labelledby="hipaa-heading"
-      >
-        {/* Left content (for title) */}
-        <div data-aos="fade-right" className="flex-shrink-0 lg:w-1/3 xl:w-1/4">
-          <h2
-            id="hippa"
-            className="mb-6 text-3xl leading-tight font-extrabold text-[var(--secondary)] sm:text-4xl md:text-5xl lg:text-4xl xl:text-5xl"
-          >
-            HIPAA: Protecting Your{" "}
-            <span className="text-[var(--primary)]">Health Information</span>
-          </h2>
-        </div>
-
-        {/* Right content (for text) */}
-        <div
-          data-aos="fade-left"
-          className="mt-8 flex max-w-2xl flex-col lg:mt-0 lg:w-2/3 xl:w-3/4"
-        >
-          <p className="mb-6 text-base text-gray-700 sm:text-lg md:text-xl">
-            KindCare Wellness fully complies with the **Health Insurance
-            Portability and Accountability Act (HIPAA)**, a federal law that
-            establishes national standards to protect sensitive patient health
-            information from being disclosed without the patient's consent or
-            knowledge.
-          </p>
-          <p className="mb-6 text-base text-gray-700 sm:text-lg md:text-xl">
-            Our commitment to HIPAA means:
-          </p>
-          <ul
-            className="mb-8 list-disc space-y-3 pl-5 text-gray-700 sm:text-lg md:text-xl"
-            aria-label="KindCare Wellness HIPAA commitments"
-          >
-            <li>
-              **Strict Confidentiality:** We implement robust administrative,
-              physical, and technical safeguards to ensure the confidentiality,
-              integrity, and availability of all Protected Health Information
-              (PHI).
-            </li>
-            <li>
-              **Privacy Practices:** We maintain comprehensive privacy policies
-              and procedures that govern how your health information is used and
-              disclosed, and our staff receives regular training on these
-              practices.
-            </li>
-            <li>
-              **Patient Rights:** You have specific rights under HIPAA
-              concerning your health information, including the right to access,
-              request corrections, and receive notice of our privacy practices.
-            </li>
-            <li>
-              **Secure Systems:** We utilize secure electronic health record
-              systems and communication methods to protect your data from
-              unauthorized access or breaches.
-            </li>
-            <li>
-              **Accountability:** We have designated a Privacy Officer
-              responsible for overseeing our HIPAA compliance and addressing any
-              privacy concerns.
-            </li>
-          </ul>
-          <p className="text-base text-gray-700 sm:text-lg md:text-xl">
-            Your health information is personal, and we are dedicated to
-            protecting it with the highest level of care and diligence.
-          </p>
-        </div>
-      </section>
-
-      {/* Ethics and Safety Section */}
-      <section
-        className="flex flex-col rounded-tl-[25px] bg-[var(--primary)] px-4 pt-16 pb-12 sm:px-6 md:pt-20 lg:flex-row lg:px-10 lg:pt-24 lg:pb-16 xl:px-20"
-        aria-labelledby="ethics-safety-heading"
-      >
-        {/* Left content */}
-        <div
-          data-aos="fade-right"
-          className="flex flex-col justify-center lg:w-1/2 xl:pr-10"
-        >
-          <h2
-            id="ethics-safety"
-            className="mb-6 text-3xl leading-tight font-extrabold text-white sm:text-4xl md:text-5xl lg:text-4xl xl:text-5xl"
-          >
-            Ethics and Safety at{" "}
-            <span className="text-[var(--secondary)]">KindCare Wellness</span>
-          </h2>
-          <p className="mt-5 mb-8 text-base text-white sm:text-lg md:text-xl">
-            At KindCare Wellness, our operations are guided by a strong ethical
-            compass and an unwavering commitment to safety. These principles are
-            fundamental to providing compassionate, high-quality care that you
-            can trust.
-          </p>
-
-          <h3 className="mb-4 text-xl font-semibold text-[var(--secondary)] sm:text-2xl">
-            Our Ethical Principles:
-          </h3>
-          <div
-            className="mb-8 grid grid-cols-1 gap-4 sm:grid-cols-2"
-            role="list"
-          >
-            <div
-              className="rounded-[15px] bg-white/20 p-6 backdrop-blur-sm"
-              role="listitem"
-            >
-              <h4 className="mb-2 text-lg font-bold text-[var(--secondary)]">
-                Patient Autonomy
-              </h4>
-              <p className="text-sm text-white">
-                Respecting patients' rights to make their own decisions.
-              </p>
+      <LegalBlock id="ethics-safety" title="Ethics and safety">
+        <dl className="border-t border-fg/10">
+          {COMPLIANCE.map((c) => (
+            <div key={c.title} className="border-b border-fg/10 py-4">
+              <dt className="font-medium text-fg">{c.title}</dt>
+              <dd className="mt-1">{c.body}</dd>
             </div>
-            <div
-              className="rounded-[15px] bg-white/20 p-6 backdrop-blur-sm"
-              role="listitem"
-            >
-              <h4 className="mb-2 text-lg font-bold text-[var(--secondary)]">
-                Beneficence
-              </h4>
-              <p className="text-sm text-white">
-                Acting in the best interest of our patients for positive
-                outcomes.
-              </p>
-            </div>
-            <div
-              className="rounded-[15px] bg-white/20 p-6 backdrop-blur-sm"
-              role="listitem"
-            >
-              <h4 className="mb-2 text-lg font-bold text-[var(--secondary)]">
-                Non-Maleficence
-              </h4>
-              <p className="text-sm text-white">
-                "First, do no harm" – preventing injury or adverse effects.
-              </p>
-            </div>
-            <div
-              className="rounded-[15px] bg-white/20 p-6 backdrop-blur-sm"
-              role="listitem"
-            >
-              <h4 className="mb-2 text-lg font-bold text-[var(--secondary)]">
-                Justice
-              </h4>
-              <p className="text-sm text-white">
-                Fair and equitable treatment for all, without discrimination.
-              </p>
-            </div>
-          </div>
-
-          <h3 className="mb-4 text-xl font-semibold text-[var(--secondary)] sm:text-2xl">
-            Commitment to Safety:
-          </h3>
-          <ul
-            className="list-disc space-y-3 pl-5 text-white sm:text-lg md:text-xl lg:mb-16"
-            aria-label="KindCare Wellness safety commitments"
-          >
-            <li>
-              **Rigorous Caregiver Vetting** including comprehensive background
-              checks and credential verification.
-            </li>
-            <li>
-              **Continuous Training** in patient safety, infection control, and
-              emergency procedures.
-            </li>
-            <li>
-              **Personalized Care Plans** addressing specific safety
-              considerations for each client's unique needs.
-            </li>
-            <li>
-              **Quality Assurance** through regular supervisory visits and
-              robust client feedback mechanisms.
-            </li>
-            <li>
-              **Clear Emergency Preparedness** protocols ensuring timely and
-              effective responses to any unforeseen circumstances.
-            </li>
-          </ul>
-        </div>
-
-        {/* Right image/illustration - Placeholder */}
-        <div
-          data-aos="fade-left"
-          className="flex h-64 items-center justify-center p-8 sm:h-80 md:h-96 lg:mt-0 lg:mb-[-10%] lg:h-auto lg:w-1/2 lg:pl-10"
-        >
-          <div className="text-center text-xl font-semibold text-[var(--secondary)]">
-            <i
-              className="fas fa-shield-alt mb-4 text-6xl"
-              aria-hidden="true"
-            ></i>
-            <p className="text-2xl sm:text-3xl">Safety & Integrity</p>
-            <p className="text-lg sm:text-xl">In Every Step</p>
-          </div>
-        </div>
-      </section>
+          ))}
+        </dl>
+      </LegalBlock>
     </>
   );
 };
 
-export default LegalCompliance;
+export default Legal;

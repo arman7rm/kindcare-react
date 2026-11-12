@@ -1,146 +1,126 @@
-import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import { ButtonLink, CtaBand, PageHero, Section } from "./ui";
+import { CONTACT, COUNTIES, NOT_OFFERED, SERVICES } from "../content/site";
 
-// Define the type for a single FAQ item
-interface FAQItem {
-  question: string;
-  answer: string;
-}
+/** "a, b and c" */
+const listJoin = (items: string[]) =>
+  items.length > 1
+    ? `${items.slice(0, -1).join(", ")} and ${items[items.length - 1]}`
+    : items.join("");
 
-const FAQComponent: React.FC = () => {
-  // Use useState with explicit type for activeIndex, can be number or null
-  const [activeIndex, setActiveIndex] = useState<number | null>(null);
+const faqs: { group: string; items: { q: string; a: React.ReactNode }[] }[] = [
+  {
+    group: "For families",
+    items: [
+      {
+        q: "Who does KindCare serve?",
+        a: "Adults 21 and older who are eligible for New Jersey Division of Developmental Disabilities (DDD) services and enrolled in the Supports Program or the Community Care Program. We don't serve people under 21.",
+      },
+      {
+        q: "What services do you provide?",
+        a: (
+          <>
+            {listJoin(SERVICES.map((s) => s.title))}. See{" "}
+            <Link to="/services" className="text-fg underline underline-offset-2">
+              our services
+            </Link>{" "}
+            for details on each one and which program it's offered under.
+          </>
+        ),
+      },
+      {
+        q: "Which counties do you serve?",
+        a: `${listJoin(COUNTIES)} counties.`,
+      },
+      {
+        q: "How do I choose KindCare as my provider?",
+        a: "Tell your Support Coordinator you'd like to work with KindCare. Your Support Coordinator selects the provider and lets us know. You can also request a call back and we'll help you through the process.",
+      },
+      {
+        q: "How long does it take to start?",
+        a: "We contact the individual and/or Support Coordinator within 5 working days of being selected. When services begin depends on authorization in the ISP and matching the person with the right DSP; we'll keep you updated throughout.",
+      },
+      {
+        q: "Is there anything you don't provide?",
+        a: `Yes. KindCare doesn't currently offer: ${NOT_OFFERED.join("; ").toLowerCase()}. Your Support Coordinator can help find a provider for these.`,
+      },
+    ],
+  },
+  {
+    group: "For Support Coordinators",
+    items: [
+      {
+        q: "How do I make a referral?",
+        a: (
+          <>
+            Call us at {CONTACT.phone} or email{" "}
+            <a href={CONTACT.referralHref} className="text-fg underline underline-offset-2">
+              {CONTACT.email}
+            </a>{" "}
+            with your contact details and the person's county. We'll follow up
+            within 5 working days and arrange a secure way to share documents.
+          </>
+        ),
+      },
+      {
+        q: "What documents will you need?",
+        a: "The person's ISP (Individualized Service Plan), PCPT (Person-Centered Planning Tool) and NJ CAT tier, plus their BSP (Behavior Support Plan) if they have one.",
+      },
+      {
+        q: "How are your DSPs screened and trained?",
+        a: "Every DSP completes a criminal background check, a Central Registry check and drug testing, and is trained on Danielle's Law, Stephen Komninos' Law, incident reporting and CPR/First Aid, plus medication training where required.",
+      },
+    ],
+  },
+];
 
-  // Explicitly type the faqs array
-  const faqs: FAQItem[] = [
-    {
-      question: "What is a Home Health Aide (HHA)?",
-      answer:
-        "A Home Health Aide (HHA) is a compassionate, trained, and certified professional who provides essential non-medical care and personal assistance to individuals in the comfort of their own homes. HHAs at Kindcare Wellness are dedicated to helping clients with activities of daily living (ADLs), such as bathing, dressing, grooming, meal preparation, mobility assistance, and basic health monitoring, ensuring comfort and well-being.",
-    },
-    {
-      question: "Are your HHAs certified in New Jersey?",
-      answer:
-        "Yes, absolutely. All of our HHAs at Kindcare Wellness are Certified Homemaker-Home Health Aides (CHHAs) licensed by the New Jersey Board of Nursing. They have successfully completed rigorous state-approved training programs and have passed comprehensive background checks and competency evaluations, as required by law, to ensure the highest quality of care.",
-    },
-    {
-      question: "What services can a Home Health Aide legally provide in NJ?",
-      answer:
-        "In New Jersey, our certified HHAs at Kindcare Wellness, working diligently under a Registered Nurse’s supervision, are authorized to assist with: Personal hygiene (bathing, grooming, toileting); Dressing and undressing; Mobility/transfers (e.g., from bed to chair); Medication reminders (please note: HHAs are not permitted to administer medications); Light housekeeping and laundry; Meal preparation and feeding assistance; Monitoring and reporting changes in health or behavior. Note: HHAs are not allowed to perform medical procedures, administer injections, or make clinical assessments.",
-    },
-    {
-      question: "Are your HHAs supervised?",
-      answer:
-        "Yes, indeed. All Home Health Aides at Kindcare Wellness are closely supervised by a Registered Nurse (RN) as mandated by the NJ Board of Nursing. Our supervisory visits are conducted at regular intervals to meticulously ensure the quality of care, adherence to personalized care plans, and complete client satisfaction.",
-    },
-    {
-      question: "How often will the supervising nurse visit the home?",
-      answer:
-        "Per state regulations, a Kindcare Wellness Registered Nurse must conduct an in-home supervision visit: At least every 60 days; Whenever there is a change in the client’s condition; To update the plan of care or address concerns from the aide or family.",
-    },
-    {
-      question: "Do you perform background checks on your HHAs?",
-      answer:
-        "Yes, thoroughly. All HHAs at Kindcare Wellness undergo: Rigorous criminal background checks; Comprehensive health screenings and TB testing; Detailed reference verification. This is in full compliance with the New Jersey Criminal History Record Background Check Act and other state requirements for home care agencies, ensuring the safety and trust of our clients.",
-    },
-    {
-      question: "Can I choose a specific aide or request a change?",
-      answer:
-        "Absolutely. At Kindcare Wellness, we understand the importance of a good match. We do our utmost to match aides based on personality, cultural sensitivity, language, and client preference. If at any time you wish to request a different caregiver, we will accommodate your request without question, ensuring your comfort and satisfaction.",
-    },
-    {
-      question: "Are your services covered by insurance or Medicaid?",
-      answer:
-        "Many HHA services provided by Kindcare Wellness are covered by: New Jersey Medicaid Managed Long-Term Services and Supports (MLTSS); Private Long-Term Care Insurance; Veterans Assistance Programs; Private Pay. Our knowledgeable staff can assist you in verifying your benefits and eligibility, making the process as smooth as possible.",
-    },
-    {
-      question: "How do I start services with Kindcare Wellness?",
-      answer:
-        "Starting services with Kindcare Wellness is simple. Contact our compassionate care coordination team today to schedule a free in-home assessment. A Registered Nurse will visit to thoroughly evaluate your needs and collaboratively develop a personalized plan of care. From there, services can typically begin within just a few days, ensuring timely support.",
-    },
-    {
-      question: "What are your hours of service?",
-      answer:
-        "Kindcare Wellness offers flexible scheduling with 24/7 availability, including nights, weekends, and holidays—all based on your unique client needs and service plan authorization, providing continuous and reliable care whenever you need it.",
-    },
-  ];
-
-  // Type the 'index' parameter as number
-  const handleToggle = (index: number) => {
-    setActiveIndex(activeIndex === index ? null : index);
-  };
-
+const FAQComponent = () => {
   return (
-    <section className="bg-gradient-to-b from-[var(--lightgreen)] to-[var(--teal)] px-4 py-16 sm:px-8 md:py-28 lg:py-32">
-      {/* Section Header */}
-      <div className="mx-auto mb-16 max-w-4xl text-center">
-        <span className="mb-3 inline-block rounded-full bg-[var(--primary)] px-4 py-2 text-lg font-semibold text-[var(--white)]">
-          FAQs
-        </span>
-        <h2 className="text-4xl font-bold text-[var(--primary)] sm:text-5xl md:text-6xl">
-          Frequently Asked Questions
-        </h2>
-        <p className="mx-auto mt-6 max-w-3xl text-xl text-[var(--primary)]">
-          Find answers to common questions about our home health aide services
-          in Northern New Jersey.
-        </p>
-      </div>
+    <>
+      <PageHero
+        eyebrow="FAQ"
+        title="Questions families and Support Coordinators ask us"
+        intro="Can't find what you're looking for? Our team is happy to help."
+      />
 
-      {/* FAQ Accordion */}
-      <div className="mx-auto max-w-4xl space-y-4">
-        {faqs.map((faq, index) => (
-          <div
-            className={`rounded-lg bg-white shadow-lg transition-all duration-300 ease-in-out ${
-              activeIndex === index ? "shadow-xl" : ""
-            }`}
-            key={index}
-          >
-            <button
-              className="flex w-full items-center justify-between p-6 text-left text-lg font-semibold text-[var(--primary)] hover:bg-[var(--primary)] hover:text-white transition-colors duration-300 rounded-lg" // Added rounded-lg to button for consistency
-              onClick={() => handleToggle(index)}
-            >
-              {faq.question}
-              <span
-                className={`text-2xl font-bold ml-4 transition-transform duration-300 ease-in-out ${
-                  activeIndex === index ? "rotate-45" : ""
-                }`}
-              >
-                {activeIndex === index ? "-" : "+"}
-              </span>
-            </button>
-            <div
-              className={`grid overflow-hidden transition-[grid-template-rows] duration-500 ease-in-out ${
-                activeIndex === index
-                  ? "grid-rows-[1fr] opacity-100"
-                  : "grid-rows-[0fr] opacity-0"
-              }`}
-            >
-              <div className="overflow-hidden pb-6 pl-6 pr-6 pt-4">
-                <p className="text-base leading-relaxed text-gray-700">
-                  {faq.answer}
-                </p>
-              </div>
+      {faqs.map((g) => (
+        <Section key={g.group}>
+          <div className="grid gap-10 lg:grid-cols-12">
+            <h2 className="text-[clamp(26px,2.6vw,38px)] leading-[1.15] text-fg lg:col-span-4">
+              {g.group}
+            </h2>
+            <div className="border-t border-fg/10 lg:col-span-7 lg:col-start-6">
+              {g.items.map((item) => (
+                <details key={item.q} className="group border-b border-fg/10">
+                  <summary className="flex cursor-pointer list-none items-center justify-between gap-6 py-5 text-lg text-fg [&::-webkit-details-marker]:hidden">
+                    {item.q}
+                    <span
+                      className="grid size-8 shrink-0 place-items-center rounded-full border border-fg/15 text-muted transition-transform group-open:rotate-45"
+                      aria-hidden="true"
+                    >
+                      +
+                    </span>
+                  </summary>
+                  <div className="pb-6 leading-relaxed text-muted">{item.a}</div>
+                </details>
+              ))}
             </div>
           </div>
-        ))}
-      </div>
+        </Section>
+      ))}
 
-      {/* CTA Section */}
-      <div className="mx-auto mt-20 max-w-4xl rounded-2xl bg-white p-8 text-center shadow-2xl">
-        <h3 className="text-2xl font-bold text-[var(--primary)] sm:text-3xl">
-          Still Have Questions?
-        </h3>
-        <p className="mt-4 text-lg text-gray-700">
-          Our friendly team at Kindcare Wellness is here to help. Reach out to
-          us for personalized assistance.
-        </p>
-        <a
-          href="/contact"
-          className="mt-6 inline-block rounded-full bg-[var(--primary)] px-8 py-3 text-lg font-bold text-white transition-all hover:bg-[var(--secondary)] hover:shadow-lg"
-        >
-          Contact Kindcare Wellness
-        </a>
-      </div>
-    </section>
+      <CtaBand
+        title="Still have questions?"
+        body={`Call us at ${CONTACT.phone}, ${CONTACT.hours}, or send us an email.`}
+      >
+        <ButtonLink href={CONTACT.phoneHref} variant="accent">
+          Call {CONTACT.phone}
+        </ButtonLink>
+        <ButtonLink href={CONTACT.emailHref} variant="outline-light">
+          Email us
+        </ButtonLink>
+      </CtaBand>
+    </>
   );
 };
 
