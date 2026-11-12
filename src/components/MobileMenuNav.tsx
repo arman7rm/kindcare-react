@@ -1,347 +1,193 @@
 import React, { useEffect, useRef, useState } from "react";
-import MobileMenuBtn from "./MobileMenuBtn";
 import { Link } from "react-router-dom";
+import Wordmark from "./Wordmark";
+
+type Section = "about" | "services" | null;
+
+const sections: {
+  id: Exclude<Section, null>;
+  label: string;
+  links: { to: string; label: string }[];
+}[] = [
+  {
+    id: "about",
+    label: "About",
+    links: [
+      { to: "/about", label: "Overview" },
+      { to: "/about#whykindcare", label: "Why KindCare?" },
+      { to: "/about#mission", label: "Our Mission" },
+      { to: "/about#compliance", label: "Compliance & Ethics" },
+    ],
+  },
+  {
+    id: "services",
+    label: "Services",
+    links: [
+      { to: "/services", label: "All services" },
+      { to: "/services#community-based-supports", label: "Community Based Supports" },
+      { to: "/services#individual-supports", label: "Individual Supports" },
+      { to: "/services#respite", label: "Respite" },
+      { to: "/services#service-area", label: "Who we serve" },
+      { to: "/services#how-to-start", label: "How to start" },
+    ],
+  },
+];
+
+const directLinks = [
+  { to: "/careers", label: "Careers" },
+  { to: "/faq", label: "FAQ" },
+  { to: "/contact", label: "Contact" },
+];
+
+const row =
+  "flex w-full items-center justify-between border-b border-fg/10 py-4 text-left text-lg text-fg focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-leaf";
 
 const MobileMenuNav: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [openSection, setOpenSection] = useState<Section>(null);
   const menuRef = useRef<HTMLDivElement>(null);
-  const buttonRefs = useRef<{ [key: string]: HTMLButtonElement | null }>({});
-  const dropdownRefs = useRef<{ [key: string]: HTMLDivElement | null }>({});
-  const menuButtonRef = useRef<HTMLButtonElement | null>(null);
-
-  const toggleDropdown = (id: string) => {
-    const dropdown = dropdownRefs.current[id];
-    const button = buttonRefs.current[id];
-    if (!dropdown || !button) return;
-
-    const isExpanded = button.getAttribute("aria-expanded") === "true";
-    button.setAttribute("aria-expanded", (!isExpanded).toString());
-    dropdown.classList.toggle("hidden");
-
-    const icon = button.querySelector('span[aria-hidden="true"]');
-    if (icon) {
-      icon.classList.toggle("fa-chevron-down");
-      icon.classList.toggle("fa-chevron-up");
-    }
-  };
+  const menuButtonRef = useRef<HTMLButtonElement>(null);
 
   const closeMenu = () => {
     setIsMenuOpen(false);
-    if (menuRef.current) {
-      menuRef.current.setAttribute("aria-hidden", "true");
-
-      // Reset dropdowns
-      Object.values(dropdownRefs.current).forEach((dropdown) =>
-        dropdown?.classList.add("hidden"),
-      );
-
-      Object.values(buttonRefs.current).forEach((btn) => {
-        btn?.setAttribute("aria-expanded", "false");
-        const icon = btn?.querySelector('span[aria-hidden="true"]');
-        icon?.classList.remove("fa-chevron-up");
-        icon?.classList.add("fa-chevron-down");
-      });
-    }
+    setOpenSection(null);
   };
 
-  // Close on outside click
+  // Close on outside click and Escape.
   useEffect(() => {
+    if (!isMenuOpen) return;
+
     const handleClickOutside = (e: MouseEvent) => {
       const target = e.target as Node;
       if (
-        menuRef.current &&
-        !menuRef.current.contains(target) &&
+        !menuRef.current?.contains(target) &&
         !menuButtonRef.current?.contains(target)
       ) {
         closeMenu();
       }
     };
-
     const handleEscape = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
         closeMenu();
+        menuButtonRef.current?.focus();
       }
     };
 
-    // 👇 Delay listener registration to avoid immediate close on open
-    const timeoutId = setTimeout(() => {
-      document.addEventListener("click", handleClickOutside);
-    }, 0);
-
+    document.addEventListener("click", handleClickOutside);
     document.addEventListener("keydown", handleEscape);
-
     return () => {
-      clearTimeout(timeoutId);
       document.removeEventListener("click", handleClickOutside);
       document.removeEventListener("keydown", handleEscape);
     };
-  }, []);
+  }, [isMenuOpen]);
 
-  const handleToggle = () => {
-    setIsMenuOpen((prev) => {
-      const next = !prev;
-      return next;
-    });
-  };
-
-  // Focus trap
+  // Keep the page from scrolling behind the open menu.
   useEffect(() => {
-    const handleTab = (e: KeyboardEvent) => {
-      if (!isMenuOpen || !menuRef.current) return;
-
-      const focusableElements = menuRef.current.querySelectorAll<HTMLElement>(
-        'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])',
-      );
-
-      const first = focusableElements[0];
-      const last = focusableElements[focusableElements.length - 1];
-
-      if (e.key === "Tab") {
-        if (e.shiftKey) {
-          if (document.activeElement === first) {
-            e.preventDefault();
-            last.focus();
-          }
-        } else {
-          if (document.activeElement === last) {
-            e.preventDefault();
-            first.focus();
-          }
-        }
-      }
-    };
-
-    if (menuRef.current) {
-      menuRef.current.addEventListener("keydown", handleTab);
-    }
-
+    document.body.style.overflow = isMenuOpen ? "hidden" : "";
     return () => {
-      menuRef.current?.removeEventListener("keydown", handleTab);
+      document.body.style.overflow = "";
     };
   }, [isMenuOpen]);
 
   return (
-    <>
-      <MobileMenuBtn
-        onToggle={handleToggle}
-        isExpanded={isMenuOpen}
-        buttonRef={menuButtonRef}
-      />
+    <div className="border-b border-fg/10 bg-bg/90 backdrop-blur-md">
+      <div className="flex h-16 items-center justify-between px-5">
+        <Wordmark onClick={closeMenu} />
+        <button
+          ref={menuButtonRef}
+          onClick={() => setIsMenuOpen((open) => !open)}
+          className="grid size-10 place-items-center rounded-full border border-fg/15 text-fg transition-colors hover:border-fg/40"
+          aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+          aria-expanded={isMenuOpen}
+          aria-controls="mobile-menu"
+        >
+          <span
+            className={`fas ${isMenuOpen ? "fa-xmark" : "fa-bars"} text-sm`}
+            aria-hidden="true"
+          />
+        </button>
+      </div>
 
       <div
         id="mobile-menu"
         ref={menuRef}
-        className={`${isMenuOpen ? "" : "hidden"} bg-white p-4 lg:hidden`}
-        aria-hidden={!isMenuOpen}
+        hidden={!isMenuOpen}
+        className="max-h-[calc(100svh-4rem)] overflow-y-auto px-5 pb-8"
       >
-        {/* Contact Info */}
-        <div className="mb-8 border-gray-200 pb-6">
-          <div className="space-y-3">
-            {/* Hours */}
-            <div className="flex items-center text-base text-gray-700">
-              <i className="far fa-clock mr-3 w-6 text-center text-[var(--secondary)]"></i>{" "}
-              {/* Clock icon */}
-              <p>
-                <strong className="text-[var(--primary)]">Hours:</strong>{" "}
-                Mon-Fri | 9am-5pm
-              </p>
-            </div>
-            {/* Location */}
-            <div className="flex items-center text-base text-gray-700">
-              <i className="fas fa-map-marker-alt mr-3 w-6 text-center text-[var(--secondary)]"></i>{" "}
-              {/* Location icon */}
-              <p>
-                <strong className="text-[var(--primary)]">Location:</strong>{" "}
-                Jersey City, NJ 07306
-              </p>
-            </div>
-            {/* Phone */}
-            <div className="flex items-center text-base">
-              <i className="fas fa-phone-alt mr-3 w-6 text-center text-[var(--secondary)]"></i>{" "}
-              {/* Phone icon */}
-              <a
-                href="tel:+12012341566"
-                className="text-[var(--primary)] transition-colors duration-200 hover:text-[var(--secondary)] hover:underline"
-              >
-                <strong className="text-[var(--primary)]">Phone:</strong> (201)
-                234-1566
-              </a>
-            </div>
-            {/* Email */}
-            <div className="flex items-center text-base">
-              <i className="fas fa-envelope mr-3 w-6 text-center text-[var(--secondary)]"></i>{" "}
-              {/* Email icon */}
-              <a
-                href="mailto:support@kindcare.com"
-                className="text-[var(--primary)] transition-colors duration-200 hover:text-[var(--secondary)] hover:underline"
-              >
-                <strong className="text-[var(--primary)]">Email:</strong>{" "}
-                support@kindcare.com
-              </a>
-            </div>
-          </div>
-        </div>
-
-        {/* Navigation */}
-        <nav className="flex flex-col space-y-1" aria-label="Mobile navigation">
-          {/* Main Navigation Links */}
-          <Link
-            to="/"
-            className="block rounded-lg px-4 py-3 text-lg font-semibold text-[var(--primary)] transition-all duration-200 hover:bg-gray-100 hover:text-[var(--secondary)] focus:ring-2 focus:ring-[var(--primary)] focus:outline-none"
-            onClick={closeMenu}
-          >
+        <nav aria-label="Mobile navigation">
+          <Link to="/" onClick={closeMenu} className={row}>
             Home
           </Link>
 
-          {/* About Us Dropdown */}
-          <div className="relative">
-            <button
-              ref={(el) => {
-                buttonRefs.current["about"] = el;
-              }}
-              className="mobile-dropdown-btn flex w-full items-center justify-between rounded-lg px-4 py-3 text-left text-lg font-semibold text-[var(--primary)] transition-all duration-200 hover:bg-gray-100 hover:text-[var(--secondary)] focus:ring-2 focus:ring-[var(--primary)] focus:outline-none"
-              aria-expanded="false"
-              aria-controls="mobile-about-menu"
-              onClick={() => toggleDropdown("about")}
-            >
-              <span>About Us</span>
-              <span
-                className="fas fa-chevron-down text-sm"
-                aria-hidden="true"
-              ></span>
-            </button>
-            <div
-              id="mobile-about-menu"
-              ref={(el) => {
-                dropdownRefs.current["about"] = el;
-              }}
-              className="mobile-dropdown-content hidden flex-col space-y-1 rounded-b-lg bg-gray-50 pt-1 pb-2 pl-8 shadow-inner"
-            >
-              <Link
-                to="/about#whykindcare"
-                onClick={() => {
-                  toggleDropdown("about");
-                  closeMenu();
-                }}
-                className="block rounded-md px-4 py-2 text-base text-gray-700 transition-colors duration-150 hover:bg-gray-200 hover:text-[var(--secondary)] focus:ring-1 focus:ring-[var(--primary)] focus:outline-none"
-              >
-                Why KindCare?
-              </Link>
-              <Link
-                to="/about#mission"
-                onClick={() => {
-                  toggleDropdown("about");
-                  closeMenu();
-                }}
-                className="block rounded-md px-4 py-2 text-base text-gray-700 transition-colors duration-150 hover:bg-gray-200 hover:text-[var(--secondary)] focus:ring-1 focus:ring-[var(--primary)] focus:outline-none"
-              >
-                Our Mission
-              </Link>
-              <Link
-                to="/about#compliance"
-                onClick={() => {
-                  toggleDropdown("about");
-                  closeMenu();
-                }}
-                className="block rounded-md px-4 py-2 text-base text-gray-700 transition-colors duration-150 hover:bg-gray-200 hover:text-[var(--secondary)] focus:ring-1 focus:ring-[var(--primary)] focus:outline-none"
-              >
-                Compliance & Ethics
-              </Link>
-              {/* Assuming this is an internal link. If external, use <a> */}
-              <Link
-                to="/donate"
-                onClick={closeMenu}
-                className="block rounded-md px-4 py-2 text-base text-gray-700 transition-colors duration-150 hover:bg-gray-200 hover:text-[var(--secondary)] focus:ring-1 focus:ring-[var(--primary)] focus:outline-none"
-              >
-                Donate
-              </Link>
-            </div>
-          </div>
+          {sections.map((s) => {
+            const open = openSection === s.id;
+            return (
+              <div key={s.id}>
+                <button
+                  className={row}
+                  aria-expanded={open}
+                  aria-controls={`mobile-${s.id}-menu`}
+                  onClick={() => setOpenSection(open ? null : s.id)}
+                >
+                  {s.label}
+                  <span
+                    className={`fas fa-chevron-down text-xs text-muted transition-transform ${open ? "rotate-180" : ""}`}
+                    aria-hidden="true"
+                  />
+                </button>
+                <div
+                  id={`mobile-${s.id}-menu`}
+                  hidden={!open}
+                  className="border-b border-fg/10 py-2 pl-4"
+                >
+                  {s.links.map((l) => (
+                    <Link
+                      key={l.to}
+                      to={l.to}
+                      onClick={closeMenu}
+                      className="block py-2 text-base text-muted hover:text-fg"
+                    >
+                      {l.label}
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            );
+          })}
 
-          {/* Services Dropdown */}
-          <div className="relative">
-            <button
-              ref={(el) => {
-                buttonRefs.current["services"] = el;
-              }}
-              className="mobile-dropdown-btn flex w-full items-center justify-between rounded-lg px-4 py-3 text-left text-lg font-semibold text-[var(--primary)] transition-all duration-200 hover:bg-gray-100 hover:text-[var(--secondary)] focus:ring-2 focus:ring-[var(--primary)] focus:outline-none"
-              aria-expanded="false"
-              aria-controls="mobile-services-menu"
-              onClick={() => toggleDropdown("services")}
-            >
-              <span>Services</span>
-              <span
-                className="fas fa-chevron-down text-sm"
-                aria-hidden="true"
-              ></span>
-            </button>
-            <div
-              id="mobile-services-menu"
-              ref={(el) => {
-                dropdownRefs.current["services"] = el;
-              }}
-              className="mobile-dropdown-content hidden flex-col space-y-1 rounded-b-lg bg-gray-50 pt-1 pb-2 pl-8 shadow-inner"
-            >
-              <Link
-                to="/services#hospice"
-                onClick={() => {
-                  toggleDropdown("services");
-                  closeMenu();
-                }}
-                className="block rounded-md px-4 py-2 text-base text-gray-700 transition-colors duration-150 hover:bg-gray-200 hover:text-[var(--secondary)] focus:ring-1 focus:ring-[var(--primary)] focus:outline-none"
-              >
-                Hospice Care
-              </Link>
-              <Link
-                to="/services#palliative"
-                onClick={() => {
-                  toggleDropdown("services");
-                  closeMenu();
-                }}
-                className="block rounded-md px-4 py-2 text-base text-gray-700 transition-colors duration-150 hover:bg-gray-200 hover:text-[var(--secondary)] focus:ring-1 focus:ring-[var(--primary)] focus:outline-none"
-              >
-                Palliative Care
-              </Link>
-              <Link
-                to="/services#homehealth"
-                onClick={() => {
-                  toggleDropdown("services");
-                  closeMenu();
-                }}
-                className="block rounded-md px-4 py-2 text-base text-gray-700 transition-colors duration-150 hover:bg-gray-200 hover:text-[var(--secondary)] focus:ring-1 focus:ring-[var(--primary)] focus:outline-none"
-              >
-                Home Health Care
-              </Link>
-            </div>
-          </div>
+          {directLinks.map((l) => (
+            <Link key={l.to} to={l.to} onClick={closeMenu} className={row}>
+              {l.label}
+            </Link>
+          ))}
 
-          {/* Other direct links (converted to Link where appropriate) */}
-          <Link
-            to="/careers"
-            onClick={closeMenu}
-            className="block rounded-lg px-4 py-3 text-lg font-semibold text-[var(--primary)] transition-all duration-200 hover:bg-gray-100 hover:text-[var(--secondary)] focus:ring-2 focus:ring-[var(--primary)] focus:outline-none"
-          >
-            Careers
-          </Link>
-          <Link
-            to="/contact"
-            onClick={closeMenu}
-            className="block rounded-lg px-4 py-3 text-lg font-semibold text-[var(--primary)] transition-all duration-200 hover:bg-gray-100 hover:text-[var(--secondary)] focus:ring-2 focus:ring-[var(--primary)] focus:outline-none"
-          >
-            Contact Us
-          </Link>
-
-          {/* Request Consultation Button Link */}
           <Link
             to="/#patientform"
             onClick={closeMenu}
-            className="mt-6 block w-full rounded-full bg-[var(--primary)] px-5 py-3 text-center text-lg font-bold text-white shadow-lg transition-all duration-300 hover:bg-[var(--secondary)] focus:ring-2 focus:ring-[var(--primary)] focus:ring-offset-2 focus:outline-none"
+            className="mt-8 block rounded-full bg-fg px-5 py-3.5 text-center text-base font-medium text-bg transition-colors hover:bg-leaf"
           >
-            Request Consultation
+            Families: get started
           </Link>
         </nav>
+
+        <address className="mt-8 space-y-1.5 text-sm text-muted not-italic">
+          <p>131 Palisade Ave, Jersey City, NJ 07306</p>
+          <p>Mon–Fri, 9am–5pm</p>
+          <p>
+            <a href="tel:+15512215439" className="text-fg hover:text-leaf">
+              (551) 221-5439
+            </a>
+            <span className="mx-2 text-fg/20">/</span>
+            <a
+              href="mailto:info@meetkindcare.com"
+              className="text-fg hover:text-leaf"
+            >
+              info@meetkindcare.com
+            </a>
+          </p>
+        </address>
       </div>
-    </>
+    </div>
   );
 };
 

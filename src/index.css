@@ -1,21 +1,179 @@
 @import "tailwindcss";
-:root {
-  --white: #ffffff;
-  --primary: #22577a;
-  --secondary: #57cc99;
-  --lightgreen: #80ed99;
-  --darkgreen: #346f42;
-  --teal: #c7f9cc;
-  --font-size: 1.5rem;
-  --urbanist: "Urbanist", sans-serif;
-  --asset: "Asset", serif;
-  --chonburi: "Chonburi", serif;
+
+/*
+ * Design tokens. Editorial look: warm paper background, light serif
+ * headlines, sans-serif body, hairline rules, pill buttons, one deep-green
+ * band. Greens come from the KindCare palette.
+ */
+@theme {
+  --color-bg: #f7f6f0; /* warm paper */
+  --color-surface: #eef1e8; /* tinted panels, chips */
+  --color-fg: #16211a; /* near-black, green-tinted */
+  --color-muted: #56605a; /* secondary text */
+  --color-forest: #183823; /* deep band / footer */
+  --color-leaf: #346f42; /* KindCare dark green: buttons, links */
+  --color-mint: #57cc99; /* KindCare green */
+  --color-sprout: #80ed99; /* KindCare light green: accent on dark */
+  --color-pale: #c7f9cc; /* KindCare pale green */
+
+  --font-sans: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, Helvetica,
+    Arial, sans-serif;
+  --font-serif: "Fraunces", Georgia, "Times New Roman", serif;
 }
 
-#root {
-  padding: 0;
+/* Legacy variables still used by inner pages; mapped onto the green palette. */
+:root {
+  --white: #ffffff;
+  --primary: var(--color-leaf);
+  --secondary: var(--color-mint);
+  --lightgreen: var(--color-sprout);
+  --darkgreen: var(--color-leaf);
+  --teal: var(--color-pale);
 }
 
 html {
   scroll-behavior: smooth;
+  /* #anchor targets clear the sticky header with their own scroll-mt-* */
+}
+
+body {
+  margin: 0;
+  background: var(--color-bg);
+  color: var(--color-fg);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/*
+ * Headline type. Intentionally unlayered so it wins over the bold/extrabold
+ * utilities left on the older inner pages, keeping every heading on-system.
+ */
+h1,
+h2 {
+  font-family: var(--font-serif);
+  font-weight: 350;
+  letter-spacing: -0.035em;
+  text-wrap: balance;
+}
+
+/* Keep decorative graphics from causing sideways scroll on small screens. */
+body {
+  overflow-x: clip;
+}
+
+/* ------------------------------------------------------------------ */
+/* Motion                                                              */
+/* ------------------------------------------------------------------ */
+
+:root {
+  /* Fast start, long gentle settle. */
+  --ease-settle: cubic-bezier(0.05, 0.9, 0.1, 1);
+}
+
+@keyframes rise-in {
+  from {
+    opacity: 0;
+    transform: translateY(2.5rem);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes ring-in {
+  from {
+    opacity: 0;
+    transform: rotate(-130deg) scale(0.7);
+  }
+  to {
+    opacity: 1;
+    transform: rotate(0deg) scale(1);
+  }
+}
+
+@keyframes pop-in {
+  from {
+    opacity: 0;
+    transform: scale(0);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes breathe {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.9;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 0.4;
+  }
+}
+
+@keyframes marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.motion-rise-in {
+  animation: rise-in 1s var(--ease-settle) var(--delay, 0s) both;
+}
+
+.motion-ring-in {
+  animation: ring-in 3s var(--ease-settle) 0.3s both;
+}
+
+.motion-pop-in {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: pop-in 0.9s var(--ease-settle) both;
+}
+
+.motion-fade-in {
+  animation: fade-in 0.8s ease-out var(--delay, 0s) both;
+}
+
+.motion-breathe {
+  animation: breathe 6s ease-in-out infinite;
+}
+
+.motion-marquee {
+  animation: marquee 40s linear infinite;
+}
+
+/* Scroll-in sections (AOS): shorter travel and the same settle curve. */
+html [data-aos="fade-up"] {
+  transform: translate3d(0, 2.5rem, 0);
+}
+html [data-aos] {
+  transition-timing-function: var(--ease-settle) !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .motion-rise-in,
+  .motion-ring-in,
+  .motion-pop-in,
+  .motion-fade-in,
+  .motion-breathe,
+  .motion-marquee {
+    animation: none !important;
+  }
 }
