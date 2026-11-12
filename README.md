@@ -61,8 +61,13 @@ src/
     DspApplicationForm.tsx  DSP job application (Careers page)
     motion/            Hero graphic, dot field, counties marquee
     ScrollManager.tsx  Scroll-to-top / scroll-to-#section on navigation
+    RouteMeta.tsx      Per-page title, description and canonical URL
+    icons.tsx          Inline SVG icons
   lib/submitForm.ts    Sends form data to the Apps Script endpoint
   index.css            Design tokens, fonts, animation keyframes
+public/                Copied as-is to the site root: favicons,
+                       apple-touch-icon, og-image (social preview),
+                       robots.txt, sitemap.xml
 apps-script/Code.gs    Source of the Google Apps Script form handler
 ```
 
@@ -71,6 +76,12 @@ apps-script/Code.gs    Source of the Google Apps Script form handler
 Most facts live in **`src/content/site.ts`** so they only need changing in one place: phone, email, address, hours, the three services and their programs, the counties served, the "how to start" steps, requested documents, what isn't offered, and the compliance points.
 
 Before publishing changes to services, programs or counties, verify them against KindCare's DDD approval records. Only list services KindCare is approved to provide.
+
+## Adding a page
+
+1. Create the page in `src/pages/` and add a `<Route>` in `src/App.tsx`.
+2. Add its title and description to `PAGES` in `src/components/RouteMeta.tsx`.
+3. Add its URL to `public/sitemap.xml`.
 
 ## Forms
 
