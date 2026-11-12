@@ -1,10 +1,9 @@
 import FAQComponent from "../components/Faq";
 
-
 const Faq: React.FC = () => {
   return (
     <>
-    <FAQComponent/>
+      <FAQComponent />
     </>
   );
 };

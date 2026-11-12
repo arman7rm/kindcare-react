@@ -1,58 +1,122 @@
+import type { CSSProperties, ReactNode } from "react";
 import { Link } from "react-router-dom";
-import patient from "../assets/patient.png";
+import { ButtonLink, Container, Eyebrow } from "./ui";
+import CircleOfSupport from "./motion/CircleOfSupport";
+import Marquee from "./motion/Marquee";
+import { COUNTIES } from "../content/site";
+
+const Rise = ({ delay, children }: { delay: number; children: ReactNode }) => (
+  <div
+    className="motion-rise-in"
+    style={{ "--delay": `${delay}s` } as CSSProperties}
+  >
+    {children}
+  </div>
+);
+
+const facts = [
+  { value: "Adults 21+", note: "eligible for New Jersey DDD services" },
+  {
+    value: "2 programs",
+    note: "Supports Program and Community Care Program",
+  },
+  { value: "5 working days", note: "to hear from us once you choose KindCare" },
+  {
+    value: "11 counties",
+    note: (
+      <Link
+        to="/services#service-area"
+        className="decoration-fg/20 hover:text-fg hover:decoration-fg underline underline-offset-4"
+      >
+        See where we work
+      </Link>
+    ),
+  },
+];
 
 const Hero = () => {
   return (
-    <main className="bg-white  m-auto px-4">
-      {/* Hero Section */}
-      <section className="flex flex-col bg-white lg:flex-row xl:mb-10">
-        {/* Left content - Text */}
-        <div
-          data-aos="fade-right"
-          data-aos-delay="200"
-          data-aos-duration="1000"
-          data-aos-easing="ease-in-out"
-          data-aos-once="true"
-          className="ml-0 pl-0 relative z-10 flex flex-col justify-center py-2 lg:w-150 lg:px-10 lg:py-16 xl:ml-50 xl:w-175 xl:py-20"
-        >
-          <h1 className=" mb-6 w-70 text-[2rem] leading-tight font-extrabold text-[var(--secondary)] sm:text-[2.5rem] md:w-155 md:text-[2.5rem] lg:w-100 lg:text-[2.5rem] xl:text-[3rem] xl:w-130">
-            Compassionate Care <span className="text-[var(--primary)]">At Home</span>
-          </h1>
-          <p className="mb-8 text-base text-gray-700 sm:text-lg">
-            Experience the comfort of professional healthcare services delivered with warmth and expertise—right where you're most comfortable: in your own home.
-          </p>
-          <div className="flex flex-col gap-4 sm:flex-row sm:gap-6">
-            <Link
-              to="/#patientform"
-              className="rounded-full bg-[var(--primary)] px-8 py-3 text-center text-base font-bold text-white transition-colors hover:bg-[var(--secondary)] shadow-md"
-            >
-              Request Consultation
-            </Link>
-            <a
-              href="/services"
-              className="rounded-full border-2 border-[var(--primary)] px-8 py-3 text-center text-base font-bold text-[var(--primary)] transition-colors hover:bg-[var(--primary)] hover:text-white shadow-md"
-            >
-              Explore Services
-            </a>
+    <>
+      <Container className="pt-6 pb-12 sm:pt-10 lg:pt-16 lg:pb-20">
+        <div className="grid items-center gap-4 sm:gap-10 lg:grid-cols-12">
+          <div className="lg:col-span-6">
+            <Rise delay={0.1}>
+              <Eyebrow>
+                <span
+                  className="bg-mint size-1.5 rounded-full"
+                  aria-hidden="true"
+                />
+                New Jersey DDD-approved provider
+              </Eyebrow>
+            </Rise>
+            <Rise delay={0.2}>
+              <h1 className="text-fg text-[clamp(34px,9vw,40px)] leading-[1.04] sm:text-[clamp(40px,5vw,74px)]">
+                Everyday support for adults with{" "}
+                <span className="text-leaf">developmental disabilities</span>
+              </h1>
+            </Rise>
+            <Rise delay={0.35}>
+              <p className="text-muted mt-5 max-w-xl text-base leading-relaxed sm:mt-6 sm:text-lg">
+                KindCare Health Services provides Community Based Supports,
+                Individual Supports and Respite for adults with intellectual and
+                developmental disabilities, at home and in the community.
+              </p>
+            </Rise>
+            <Rise delay={0.5}>
+              {/* Side by side even on phones, so the hero graphic fits on screen. */}
+              <div className="mt-8 grid grid-cols-2 gap-2 sm:mt-10 sm:flex sm:gap-3">
+                <ButtonLink to="/#patientform" padding="px-3 sm:px-6">
+                  Families: get started
+                </ButtonLink>
+                <ButtonLink
+                  to="/services#referrals"
+                  variant="outline"
+                  padding="px-3 sm:px-6"
+                >
+                  Refer a client <span aria-hidden="true">→</span>
+                </ButtonLink>
+              </div>
+            </Rise>
+          </div>
+
+          <div className="mx-auto w-full max-w-[300px] px-8 sm:max-w-[460px] sm:px-14 lg:col-span-6 lg:max-w-none lg:px-0">
+            <CircleOfSupport />
           </div>
         </div>
+      </Container>
 
-        {/* Right content - Image */}
-        <div className="col-span-3 h-64 sm:h-80 md:h-[30rem] lg:h-auto lg:ml-[-10]">
-          <img
-            data-aos="fade-left"
-            data-aos-delay="200"
-            data-aos-duration="1000"
-            data-aos-easing="ease-in-out"
-            data-aos-once="true"
-            src={patient}
-            alt="Smiling senior patient receiving care at home from a KindCare nurse"
-            className="h-full w-full rounded-[25px] object-cover shadow-2xl"
-          />
-        </div>
-      </section>
+      <Container>
+        <dl className="border-fg/10 grid border-t sm:grid-cols-2 lg:grid-cols-4">
+          {facts.map((f, i) => (
+            <div
+              key={f.value}
+              className={`motion-rise-in border-fg/10 border-b py-6 sm:pr-6 lg:border-b-0 ${
+                i % 2 ? "sm:pl-6" : ""
+              } ${i > 0 ? "lg:border-l lg:pl-6" : ""}`}
+              style={{ "--delay": `${0.7 + i * 0.08}s` } as CSSProperties}
+            >
+              <dt className="text-fg font-serif text-3xl font-light tracking-[-0.03em]">
+                {f.value}
+              </dt>
+              <dd className="text-muted mt-2 text-sm leading-relaxed">
+                {f.note}
+              </dd>
+            </div>
+          ))}
+        </dl>
+      </Container>
 
-    </main>
+      <div className="border-fg/10 mt-6 border-t py-6 lg:mt-10">
+        <Marquee
+          label={`Serving ${COUNTIES.join(", ")} counties in New Jersey.`}
+          items={COUNTIES.map((c) => (
+            <span className="text-fg/70 font-serif text-2xl font-light tracking-[-0.02em] whitespace-nowrap">
+              {c} County
+            </span>
+          ))}
+        />
+      </div>
+    </>
   );
 };
 
