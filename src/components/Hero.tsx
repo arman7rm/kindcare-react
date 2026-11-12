@@ -50,31 +50,36 @@ const Hero = () => {
               </Eyebrow>
             </Rise>
             <Rise delay={0.2}>
-              <h1 className="text-fg text-[clamp(40px,5vw,74px)] leading-[1.04]">
+              <h1 className="text-fg text-[clamp(34px,9vw,40px)] leading-[1.04] sm:text-[clamp(40px,5vw,74px)]">
                 Everyday support for adults with{" "}
                 <span className="text-leaf">developmental disabilities</span>
               </h1>
             </Rise>
             <Rise delay={0.35}>
-              <p className="text-muted mt-6 max-w-xl text-lg leading-relaxed">
+              <p className="text-muted mt-5 max-w-xl text-base leading-relaxed sm:mt-6 sm:text-lg">
                 KindCare Health Services provides Community Based Supports,
                 Individual Supports and Respite for adults with intellectual and
                 developmental disabilities, at home and in the community.
               </p>
             </Rise>
             <Rise delay={0.5}>
-              <div className="mt-10 flex flex-col gap-3 sm:flex-row">
-                <ButtonLink to="/#patientform">
+              {/* Side by side even on phones, so the hero graphic fits on screen. */}
+              <div className="mt-8 grid grid-cols-2 gap-2 sm:mt-10 sm:flex sm:gap-3">
+                <ButtonLink to="/#patientform" padding="px-3 sm:px-6">
                   Families: get started
                 </ButtonLink>
-                <ButtonLink to="/services#referrals" variant="outline">
+                <ButtonLink
+                  to="/services#referrals"
+                  variant="outline"
+                  padding="px-3 sm:px-6"
+                >
                   Refer a client <span aria-hidden="true">→</span>
                 </ButtonLink>
               </div>
             </Rise>
           </div>
 
-          <div className="mx-auto w-full max-w-[340px] px-9 sm:max-w-[460px] sm:px-14 lg:col-span-6 lg:max-w-none lg:px-0">
+          <div className="mx-auto w-full max-w-[300px] px-8 sm:max-w-[460px] sm:px-14 lg:col-span-6 lg:max-w-none lg:px-0">
             <CircleOfSupport />
           </div>
         </div>

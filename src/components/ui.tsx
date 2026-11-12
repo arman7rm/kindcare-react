@@ -91,17 +91,20 @@ export const Section = ({
 );
 
 const pill =
-  "inline-flex items-center justify-center gap-2 rounded-full px-6 py-3.5 text-center text-sm font-medium transition-colors";
+  "inline-flex items-center justify-center gap-2 rounded-full py-3.5 text-center text-sm font-medium transition-colors";
 
 export const ButtonLink = ({
   to,
   href,
   variant = "solid",
+  padding = "px-6",
   children,
 }: {
   to?: string;
   href?: string;
   variant?: "solid" | "outline" | "accent" | "outline-light";
+  /** Horizontal padding classes; tighter values let two buttons share a row. */
+  padding?: string;
   children: ReactNode;
 }) => {
   const styles = {
@@ -110,7 +113,7 @@ export const ButtonLink = ({
     accent: "bg-sprout text-forest hover:bg-pale",
     "outline-light": "border border-bg/30 text-bg hover:border-bg",
   }[variant];
-  const className = `${pill} ${styles}`;
+  const className = `${pill} ${padding} ${styles}`;
   return to ? (
     <Link to={to} className={className}>
       {children}
