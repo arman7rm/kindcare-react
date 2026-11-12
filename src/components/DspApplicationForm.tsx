@@ -59,7 +59,7 @@ const DspApplicationForm = () => {
       className="border-fg/10 scroll-mt-20 border-t"
       aria-labelledby="dsp-form-heading"
     >
-      <div className="mx-auto grid max-w-7xl gap-12 px-5 py-20 md:px-8 lg:grid-cols-12 lg:px-10 lg:py-28">
+      <div className="mx-auto grid max-w-7xl gap-8 px-5 py-12 sm:gap-12 sm:py-20 md:px-8 lg:grid-cols-12 lg:px-10 lg:py-28">
         <div className="lg:col-span-5" data-aos="fade-up">
           <span className="bg-surface text-fg mb-6 inline-flex rounded-md px-3 pt-2.5 pb-2 text-xs leading-none font-medium">
             Apply

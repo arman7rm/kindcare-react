@@ -4,26 +4,26 @@ import { ArrowLink, Section, SectionHeading } from "./ui";
 /** Numbered list of DDD services. `detailed` shows the bullet points too. */
 const ServiceList = ({ detailed = false }: { detailed?: boolean }) => {
   return (
-    <ol className="mt-16 border-t border-fg/10 lg:mt-20">
+    <ol className="border-fg/10 mt-10 border-t sm:mt-16 lg:mt-20">
       {SERVICES.map((s, i) => (
         <li
           key={s.id}
           id={detailed ? s.id : undefined}
-          className="grid scroll-mt-24 gap-5 border-b border-fg/10 py-10 lg:grid-cols-12 lg:gap-10 lg:py-14"
+          className="border-fg/10 grid scroll-mt-24 gap-5 border-b py-10 lg:grid-cols-12 lg:gap-10 lg:py-14"
           data-aos="fade-up"
         >
-          <span className="text-sm text-muted tabular-nums lg:col-span-1">
+          <span className="text-muted text-sm tabular-nums lg:col-span-1">
             {String(i + 1).padStart(2, "0")}
           </span>
           <div className="lg:col-span-5">
-            <h3 className="font-serif text-3xl font-light tracking-[-0.03em] text-fg lg:text-4xl">
+            <h3 className="text-fg font-serif text-3xl font-light tracking-[-0.03em] lg:text-4xl">
               {s.title}
             </h3>
             <ul className="mt-4 flex flex-wrap gap-2">
               {s.programs.map((p) => (
                 <li
                   key={p}
-                  className="rounded-full bg-surface px-3 py-1 text-xs font-medium text-leaf"
+                  className="bg-surface text-leaf rounded-full px-3 py-1 text-xs font-medium"
                 >
                   {p}
                 </li>
@@ -31,13 +31,13 @@ const ServiceList = ({ detailed = false }: { detailed?: boolean }) => {
             </ul>
           </div>
           <div className="lg:col-span-6">
-            <p className="text-lg leading-relaxed text-muted">{s.summary}</p>
+            <p className="text-muted text-lg leading-relaxed">{s.summary}</p>
             {detailed ? (
-              <ul className="mt-6 border-t border-fg/10">
+              <ul className="border-fg/10 mt-6 border-t">
                 {s.details.map((d) => (
                   <li
                     key={d}
-                    className="flex gap-3 border-b border-fg/10 py-3 text-fg/85"
+                    className="border-fg/10 text-fg/85 flex gap-3 border-b py-3"
                   >
                     <span className="text-mint" aria-hidden="true">
                       —

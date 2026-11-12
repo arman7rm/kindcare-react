@@ -13,10 +13,10 @@ const LegalBlock = ({
 }) => (
   <Section id={id} className="scroll-mt-20">
     <div className="grid gap-10 lg:grid-cols-12">
-      <h2 className="text-[clamp(26px,2.6vw,38px)] leading-[1.15] text-fg lg:col-span-4">
+      <h2 className="text-fg text-[clamp(26px,2.6vw,38px)] leading-[1.15] lg:col-span-4">
         {title}
       </h2>
-      <div className="space-y-5 leading-relaxed text-muted lg:col-span-7 lg:col-start-6 [&_h3]:pt-2 [&_h3]:font-medium [&_h3]:text-fg">
+      <div className="text-muted [&_h3]:text-fg space-y-5 leading-relaxed lg:col-span-7 lg:col-start-6 [&_h3]:pt-2 [&_h3]:font-medium">
         {children}
       </div>
     </div>
@@ -34,7 +34,10 @@ const Legal: React.FC = () => {
             How KindCare Health Services meets its obligations to the people we
             support, their families and the State of New Jersey. Questions?
             Contact us at{" "}
-            <a href={CONTACT.emailHref} className="text-fg underline underline-offset-2">
+            <a
+              href={CONTACT.emailHref}
+              className="text-fg underline underline-offset-2"
+            >
               {CONTACT.email}
             </a>{" "}
             or {CONTACT.phone}.
@@ -60,8 +63,8 @@ const Legal: React.FC = () => {
         <h3>Information we collect</h3>
         <p>
           When you use the form on this website, we collect your name, email
-          address, phone number and city and state. Please don't include
-          medical or health information in the form.
+          address, phone number and city and state. Please don't include medical
+          or health information in the form.
         </p>
         <p>
           For people who receive services, we receive information needed to
@@ -77,17 +80,20 @@ const Legal: React.FC = () => {
         </p>
         <h3>Who we share it with</h3>
         <p>
-          We share information only as needed to provide services or as
-          required or permitted by law, for example with the person's Support
+          We share information only as needed to provide services or as required
+          or permitted by law, for example with the person's Support
           Coordinator, the Division of Developmental Disabilities, or service
-          providers who help us operate, such as the service that processes
-          our website form.
+          providers who help us operate, such as the service that processes our
+          website form.
         </p>
         <h3>Your choices</h3>
         <p>
           You can ask to see or correct the information we hold about you, or
           ask us to stop contacting you, by emailing{" "}
-          <a href={CONTACT.emailHref} className="text-fg underline underline-offset-2">
+          <a
+            href={CONTACT.emailHref}
+            className="text-fg underline underline-offset-2"
+          >
             {CONTACT.email}
           </a>
           .
@@ -98,22 +104,21 @@ const Legal: React.FC = () => {
         <p>
           The Health Insurance Portability and Accountability Act (HIPAA) sets
           national standards for protecting health information. KindCare
-          protects the health information of the people we support and uses
-          and discloses it only as HIPAA allows.
+          protects the health information of the people we support and uses and
+          discloses it only as HIPAA allows.
         </p>
         <p>
           Under HIPAA, individuals generally have the right to see and get a
-          copy of their health information, to ask for corrections, and to
-          learn how their information has been shared. To make a request,
-          contact us.
+          copy of their health information, to ask for corrections, and to learn
+          how their information has been shared. To make a request, contact us.
         </p>
       </LegalBlock>
 
       <LegalBlock id="ethics-safety" title="Ethics and safety">
-        <dl className="border-t border-fg/10">
+        <dl className="border-fg/10 border-t">
           {COMPLIANCE.map((c) => (
-            <div key={c.title} className="border-b border-fg/10 py-4">
-              <dt className="font-medium text-fg">{c.title}</dt>
+            <div key={c.title} className="border-fg/10 border-b py-4">
+              <dt className="text-fg font-medium">{c.title}</dt>
               <dd className="mt-1">{c.body}</dd>
             </div>
           ))}

@@ -52,7 +52,7 @@ const Careers: React.FC = () => {
           title="What DSPs do"
           aside="DSPs provide Community Based Supports, Individual Supports and Respite to the people we serve."
         />
-        <ul className="border-fg/10 mt-16 border-t lg:mt-20">
+        <ul className="border-fg/10 mt-10 border-t sm:mt-16 lg:mt-20">
           {duties.map((d, i) => (
             <li
               key={d}

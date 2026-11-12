@@ -21,7 +21,10 @@ const faqs: { group: string; items: { q: string; a: React.ReactNode }[] }[] = [
         a: (
           <>
             {listJoin(SERVICES.map((s) => s.title))}. See{" "}
-            <Link to="/services" className="text-fg underline underline-offset-2">
+            <Link
+              to="/services"
+              className="text-fg underline underline-offset-2"
+            >
               our services
             </Link>{" "}
             for details on each one and which program it's offered under.
@@ -54,7 +57,10 @@ const faqs: { group: string; items: { q: string; a: React.ReactNode }[] }[] = [
         a: (
           <>
             Call us at {CONTACT.phone} or email{" "}
-            <a href={CONTACT.referralHref} className="text-fg underline underline-offset-2">
+            <a
+              href={CONTACT.referralHref}
+              className="text-fg underline underline-offset-2"
+            >
               {CONTACT.email}
             </a>{" "}
             with your contact details and the person's county. We'll follow up
@@ -86,22 +92,24 @@ const FAQComponent = () => {
       {faqs.map((g) => (
         <Section key={g.group}>
           <div className="grid gap-10 lg:grid-cols-12">
-            <h2 className="text-[clamp(26px,2.6vw,38px)] leading-[1.15] text-fg lg:col-span-4">
+            <h2 className="text-fg text-[clamp(26px,2.6vw,38px)] leading-[1.15] lg:col-span-4">
               {g.group}
             </h2>
-            <div className="border-t border-fg/10 lg:col-span-7 lg:col-start-6">
+            <div className="border-fg/10 border-t lg:col-span-7 lg:col-start-6">
               {g.items.map((item) => (
-                <details key={item.q} className="group border-b border-fg/10">
-                  <summary className="flex cursor-pointer list-none items-center justify-between gap-6 py-5 text-lg text-fg [&::-webkit-details-marker]:hidden">
+                <details key={item.q} className="group border-fg/10 border-b">
+                  <summary className="text-fg flex cursor-pointer list-none items-center justify-between gap-6 py-5 text-lg [&::-webkit-details-marker]:hidden">
                     {item.q}
                     <span
-                      className="grid size-8 shrink-0 place-items-center rounded-full border border-fg/15 text-muted transition-transform group-open:rotate-45"
+                      className="border-fg/15 text-muted grid size-8 shrink-0 place-items-center rounded-full border transition-transform group-open:rotate-45"
                       aria-hidden="true"
                     >
                       +
                     </span>
                   </summary>
-                  <div className="pb-6 leading-relaxed text-muted">{item.a}</div>
+                  <div className="text-muted pb-6 leading-relaxed">
+                    {item.a}
+                  </div>
                 </details>
               ))}
             </div>

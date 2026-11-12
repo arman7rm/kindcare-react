@@ -44,41 +44,44 @@ const AboutUs: React.FC = () => {
       <Section id="mission" className="scroll-mt-20">
         <div className="grid gap-10 lg:grid-cols-12">
           <div className="lg:col-span-5" data-aos="fade-up">
-            <span className="mb-6 inline-flex rounded-md bg-surface px-3 pt-2.5 pb-2 text-xs leading-none font-medium text-fg">
+            <span className="bg-surface text-fg mb-6 inline-flex rounded-md px-3 pt-2.5 pb-2 text-xs leading-none font-medium">
               Our mission
             </span>
-            <h2 className="text-[clamp(30px,3.4vw,50px)] leading-[1.1] text-fg">
+            <h2 className="text-fg text-[clamp(30px,3.4vw,50px)] leading-[1.1]">
               Support that respects the person
             </h2>
           </div>
           <div
-            className="space-y-5 text-lg leading-relaxed text-muted lg:col-span-6 lg:col-start-7"
+            className="text-muted space-y-5 text-lg leading-relaxed lg:col-span-6 lg:col-start-7"
             data-aos="fade-up"
           >
             <p>
               Our mission is to help adults with intellectual and developmental
-              disabilities build skills, take part in their communities and
-              live the lives they choose, with dependable support from people
-              who know them.
+              disabilities build skills, take part in their communities and live
+              the lives they choose, with dependable support from people who
+              know them.
             </p>
             <p>
               We also support the families who care for them, through Respite
-              and by keeping families and Support Coordinators involved at
-              every step.
+              and by keeping families and Support Coordinators involved at every
+              step.
             </p>
           </div>
         </div>
       </Section>
 
       <Section id="whykindcare" className="scroll-mt-20">
-        <SectionHeading eyebrow="Why KindCare" title="What families can expect" />
-        <div className="mt-16 grid gap-px overflow-hidden rounded-3xl border border-fg/10 bg-fg/10 sm:grid-cols-2 lg:mt-20 lg:grid-cols-4">
+        <SectionHeading
+          eyebrow="Why KindCare"
+          title="What families can expect"
+        />
+        <div className="border-fg/10 bg-fg/10 mt-10 grid gap-px overflow-hidden rounded-3xl border sm:mt-16 sm:grid-cols-2 lg:mt-20 lg:grid-cols-4">
           {values.map((v) => (
             <div key={v.title} className="bg-bg p-8" data-aos="fade-up">
-              <h3 className="font-serif text-2xl font-light tracking-[-0.02em] text-fg">
+              <h3 className="text-fg font-serif text-2xl font-light tracking-[-0.02em]">
                 {v.title}
               </h3>
-              <p className="mt-3 leading-relaxed text-muted">{v.body}</p>
+              <p className="text-muted mt-3 leading-relaxed">{v.body}</p>
             </div>
           ))}
         </div>
@@ -91,7 +94,10 @@ const AboutUs: React.FC = () => {
           aside={
             <>
               Questions or concerns about our services? Contact us at{" "}
-              <a href={CONTACT.emailHref} className="text-fg underline underline-offset-2">
+              <a
+                href={CONTACT.emailHref}
+                className="text-fg underline underline-offset-2"
+              >
                 {CONTACT.email}
               </a>{" "}
               or {CONTACT.phone}. You can also speak with your Support
@@ -99,15 +105,15 @@ const AboutUs: React.FC = () => {
             </>
           }
         />
-        <dl className="mt-16 border-t border-fg/10 lg:mt-20">
+        <dl className="border-fg/10 mt-10 border-t sm:mt-16 lg:mt-20">
           {COMPLIANCE.map((c) => (
             <div
               key={c.title}
-              className="grid gap-2 border-b border-fg/10 py-6 lg:grid-cols-12 lg:gap-10"
+              className="border-fg/10 grid gap-2 border-b py-6 lg:grid-cols-12 lg:gap-10"
               data-aos="fade-up"
             >
-              <dt className="font-medium text-fg lg:col-span-4">{c.title}</dt>
-              <dd className="leading-relaxed text-muted lg:col-span-7 lg:col-start-6">
+              <dt className="text-fg font-medium lg:col-span-4">{c.title}</dt>
+              <dd className="text-muted leading-relaxed lg:col-span-7 lg:col-start-6">
                 {c.body}
               </dd>
             </div>

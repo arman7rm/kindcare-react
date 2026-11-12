@@ -17,8 +17,9 @@ const Services: React.FC = () => {
         title={
           <>
             Services for adults with{" "}
-            <span className="text-leaf">intellectual and developmental
-            disabilities</span>
+            <span className="text-leaf">
+              intellectual and developmental disabilities
+            </span>
           </>
         }
         intro="KindCare Health Services is approved by the New Jersey Division of Developmental Disabilities (DDD) to provide the services below through the Supports Program and the Community Care Program."
@@ -46,13 +47,13 @@ const Services: React.FC = () => {
           title="Adults 21 and older, in 11 New Jersey counties"
           aside="We serve adults who are eligible for New Jersey DDD services and enrolled in the Supports Program or the Community Care Program. We don't serve people under 21."
         />
-        <ul className="mt-16 grid grid-cols-2 border-t border-l border-fg/10 sm:grid-cols-3 lg:mt-20 lg:grid-cols-4">
+        <ul className="border-fg/10 mt-10 grid grid-cols-2 border-t border-l sm:mt-16 sm:grid-cols-3 lg:mt-20 lg:grid-cols-4">
           {COUNTIES.map((c) => (
             <li
               key={c}
-              className="border-r border-b border-fg/10 px-5 py-6 font-serif text-xl font-light tracking-[-0.02em] text-fg"
+              className="border-fg/10 text-fg border-r border-b px-5 py-6 font-serif text-xl font-light tracking-[-0.02em]"
             >
-              {c} <span className="font-sans text-sm text-muted">County</span>
+              {c} <span className="text-muted font-sans text-sm">County</span>
             </li>
           ))}
         </ul>
@@ -63,20 +64,23 @@ const Services: React.FC = () => {
       <Section>
         <div className="grid gap-12 lg:grid-cols-12">
           <div className="lg:col-span-5" data-aos="fade-up">
-            <h2 className="text-[clamp(28px,3vw,42px)] leading-[1.1] text-fg">
+            <h2 className="text-fg text-[clamp(28px,3vw,42px)] leading-[1.1]">
               What we don't provide
             </h2>
-            <p className="mt-5 text-lg leading-relaxed text-muted">
+            <p className="text-muted mt-5 text-lg leading-relaxed">
               To make sure people get the right support, here's what KindCare
               doesn't currently offer. A Support Coordinator can help find a
               provider for these.
             </p>
           </div>
-          <ul className="border-t border-fg/10 lg:col-span-6 lg:col-start-7" data-aos="fade-up">
+          <ul
+            className="border-fg/10 border-t lg:col-span-6 lg:col-start-7"
+            data-aos="fade-up"
+          >
             {NOT_OFFERED.map((item) => (
               <li
                 key={item}
-                className="flex gap-3 border-b border-fg/10 py-4 text-fg/85"
+                className="border-fg/10 text-fg/85 flex gap-3 border-b py-4"
               >
                 <span className="text-muted" aria-hidden="true">
                   ×

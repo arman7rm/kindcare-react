@@ -36,13 +36,13 @@ const Contact: React.FC = () => {
         }
         intro="Families can request a call back below. Support Coordinators and case managers can call or email us to make a referral."
       >
-        <dl className="mt-12 border-t border-fg/10">
+        <dl className="border-fg/10 mt-12 border-t">
           {details.map((d) => (
             <div
               key={d.label}
-              className="grid grid-cols-[6rem_1fr] gap-4 border-b border-fg/10 py-4"
+              className="border-fg/10 grid grid-cols-[6rem_1fr] gap-4 border-b py-4"
             >
-              <dt className="text-sm text-muted">{d.label}</dt>
+              <dt className="text-muted text-sm">{d.label}</dt>
               <dd className="text-fg">{d.value}</dd>
             </div>
           ))}

@@ -32,7 +32,7 @@ export const PageHero = ({
   intro: ReactNode;
   children?: ReactNode;
 }) => (
-  <Container className="pt-12 pb-16 lg:pt-20 lg:pb-24">
+  <Container className="pt-8 pb-12 sm:pt-12 sm:pb-16 lg:pt-20 lg:pb-24">
     <div className="max-w-3xl" data-aos="fade-up">
       <Eyebrow>{eyebrow}</Eyebrow>
       <h1 className="text-fg text-[clamp(38px,4.8vw,68px)] leading-[1.05]">
@@ -86,7 +86,7 @@ export const Section = ({
   className?: string;
 }) => (
   <section id={id} className={`border-fg/10 border-t ${className}`}>
-    <Container className="py-20 lg:py-28">{children}</Container>
+    <Container className="py-12 sm:py-20 lg:py-28">{children}</Container>
   </section>
 );
 
@@ -156,7 +156,7 @@ export const CtaBand = ({
   body: ReactNode;
   children: ReactNode;
 }) => (
-  <section className="px-5 pb-20 md:px-8 lg:px-10 lg:pb-28">
+  <section className="px-5 pb-12 sm:pb-20 md:px-8 lg:px-10 lg:pb-28">
     <div
       className="bg-forest relative mx-auto max-w-7xl overflow-hidden rounded-3xl px-8 py-16 md:px-14 md:py-24"
       data-aos="fade-up"
