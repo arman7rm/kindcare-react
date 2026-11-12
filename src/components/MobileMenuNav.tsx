@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import Wordmark from "./Wordmark";
+import { ChevronDown, CloseIcon, MenuIcon } from "./icons";
 
 type Section = "about" | "services" | null;
 
@@ -24,7 +25,10 @@ const sections: {
     label: "Services",
     links: [
       { to: "/services", label: "All services" },
-      { to: "/services#community-based-supports", label: "Community Based Supports" },
+      {
+        to: "/services#community-based-supports",
+        label: "Community Based Supports",
+      },
       { to: "/services#individual-supports", label: "Individual Supports" },
       { to: "/services#respite", label: "Respite" },
       { to: "/services#service-area", label: "Who we serve" },
@@ -90,21 +94,22 @@ const MobileMenuNav: React.FC = () => {
   }, [isMenuOpen]);
 
   return (
-    <div className="border-b border-fg/10 bg-bg/90 backdrop-blur-md">
+    <div className="border-fg/10 bg-bg/90 border-b backdrop-blur-md">
       <div className="flex h-16 items-center justify-between px-5">
         <Wordmark onClick={closeMenu} />
         <button
           ref={menuButtonRef}
           onClick={() => setIsMenuOpen((open) => !open)}
-          className="grid size-10 place-items-center rounded-full border border-fg/15 text-fg transition-colors hover:border-fg/40"
+          className="border-fg/15 text-fg hover:border-fg/40 grid size-10 place-items-center rounded-full border transition-colors"
           aria-label={isMenuOpen ? "Close menu" : "Open menu"}
           aria-expanded={isMenuOpen}
           aria-controls="mobile-menu"
         >
-          <span
-            className={`fas ${isMenuOpen ? "fa-xmark" : "fa-bars"} text-sm`}
-            aria-hidden="true"
-          />
+          {isMenuOpen ? (
+            <CloseIcon className="size-[18px]" />
+          ) : (
+            <MenuIcon className="size-[18px]" />
+          )}
         </button>
       </div>
 
@@ -130,22 +135,21 @@ const MobileMenuNav: React.FC = () => {
                   onClick={() => setOpenSection(open ? null : s.id)}
                 >
                   {s.label}
-                  <span
-                    className={`fas fa-chevron-down text-xs text-muted transition-transform ${open ? "rotate-180" : ""}`}
-                    aria-hidden="true"
+                  <ChevronDown
+                    className={`text-muted size-4 transition-transform ${open ? "rotate-180" : ""}`}
                   />
                 </button>
                 <div
                   id={`mobile-${s.id}-menu`}
                   hidden={!open}
-                  className="border-b border-fg/10 py-2 pl-4"
+                  className="border-fg/10 border-b py-2 pl-4"
                 >
                   {s.links.map((l) => (
                     <Link
                       key={l.to}
                       to={l.to}
                       onClick={closeMenu}
-                      className="block py-2 text-base text-muted hover:text-fg"
+                      className="text-muted hover:text-fg block py-2 text-base"
                     >
                       {l.label}
                     </Link>
@@ -164,20 +168,20 @@ const MobileMenuNav: React.FC = () => {
           <Link
             to="/#patientform"
             onClick={closeMenu}
-            className="mt-8 block rounded-full bg-fg px-5 py-3.5 text-center text-base font-medium text-bg transition-colors hover:bg-leaf"
+            className="bg-fg text-bg hover:bg-leaf mt-8 block rounded-full px-5 py-3.5 text-center text-base font-medium transition-colors"
           >
             Families: get started
           </Link>
         </nav>
 
-        <address className="mt-8 space-y-1.5 text-sm text-muted not-italic">
+        <address className="text-muted mt-8 space-y-1.5 text-sm not-italic">
           <p>131 Palisade Ave, Jersey City, NJ 07306</p>
           <p>Mon–Fri, 9am–5pm</p>
           <p>
             <a href="tel:+15512215439" className="text-fg hover:text-leaf">
               (551) 221-5439
             </a>
-            <span className="mx-2 text-fg/20">/</span>
+            <span className="text-fg/20 mx-2">/</span>
             <a
               href="mailto:info@meetkindcare.com"
               className="text-fg hover:text-leaf"

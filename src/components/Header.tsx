@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import Wordmark from "./Wordmark";
+import { ChevronDown } from "./icons";
 
 const aboutLinks = [
   { to: "/about#whykindcare", label: "Why KindCare?" },
@@ -33,10 +34,7 @@ const Dropdown = ({
   <div className="group relative">
     <Link to={to} className={`${navItem} inline-flex items-center gap-1.5`}>
       {label}
-      <span
-        className="fas fa-chevron-down text-[9px] opacity-60 transition-transform group-focus-within:rotate-180 group-hover:rotate-180"
-        aria-hidden="true"
-      />
+      <ChevronDown className="size-3 opacity-60 transition-transform group-focus-within:rotate-180 group-hover:rotate-180" />
     </Link>
     <div className="invisible absolute top-full left-0 z-50 pt-2 opacity-0 transition-all duration-200 group-focus-within:visible group-focus-within:opacity-100 group-hover:visible group-hover:opacity-100">
       <ul className="border-fg/10 min-w-56 rounded-2xl border bg-white p-2 shadow-[0_12px_32px_-12px_rgb(22_33_26/0.18)]">
