@@ -37,8 +37,8 @@ const facts = [
 const Hero = () => {
   return (
     <>
-      <Container className="pt-12 pb-16 lg:pt-16 lg:pb-20">
-        <div className="grid items-center gap-12 lg:grid-cols-12 lg:gap-10">
+      <Container className="pt-6 pb-12 sm:pt-10 lg:pt-16 lg:pb-20">
+        <div className="grid items-center gap-4 sm:gap-10 lg:grid-cols-12">
           <div className="lg:col-span-6">
             <Rise delay={0.1}>
               <Eyebrow>
@@ -74,7 +74,7 @@ const Hero = () => {
             </Rise>
           </div>
 
-          <div className="px-12 sm:px-16 lg:col-span-6 lg:px-0">
+          <div className="mx-auto w-full max-w-[340px] px-9 sm:max-w-[460px] sm:px-14 lg:col-span-6 lg:max-w-none lg:px-0">
             <CircleOfSupport />
           </div>
         </div>
