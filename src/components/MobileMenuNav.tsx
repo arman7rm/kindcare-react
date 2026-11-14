@@ -62,13 +62,14 @@ const MobileMenuNav: React.FC = () => {
     if (!isMenuOpen) return;
 
     const handleClickOutside = (e: MouseEvent) => {
-      const target = e.target as Node;
-      if (
-        !menuRef.current?.contains(target) &&
-        !menuButtonRef.current?.contains(target)
-      ) {
-        closeMenu();
-      }
+      // Use the event path, not e.target: on a real tap React re-renders
+      // before the event reaches document, swapping the menu icon, so the
+      // tapped <svg> is already detached and contains() would say "outside".
+      const path = e.composedPath();
+      const inside = [menuRef.current, menuButtonRef.current].some(
+        (el) => el && path.includes(el),
+      );
+      if (!inside) closeMenu();
     };
     const handleEscape = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
@@ -106,9 +107,9 @@ const MobileMenuNav: React.FC = () => {
           aria-controls="mobile-menu"
         >
           {isMenuOpen ? (
-            <CloseIcon className="size-[18px]" />
+            <CloseIcon className="pointer-events-none size-[18px]" />
           ) : (
-            <MenuIcon className="size-[18px]" />
+            <MenuIcon className="pointer-events-none size-[18px]" />
           )}
         </button>
       </div>
